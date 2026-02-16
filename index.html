@@ -20,11 +20,9 @@
         <ul class="nav-links" id="navLinks">
           <li><a href="#inicio">Início</a></li>
           <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#experiencia">Experiência</a></li>
           <li><a href="#links">Links</a></li>
           <li><a href="#habilidades">Habilidades</a></li>
           <li><a href="#projetos">Projetos</a></li>
-          <li><a href="#timeline">Timeline</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
 
@@ -117,19 +115,6 @@
           evoluir, aprender novas tecnologias e melhorar minhas habilidades
           criativas e técnicas.
         </p>
-      </section>
-
-      <section id="experiencia" class="section container reveal">
-        <h2 class="section-title">Experiência</h2>
-        <div class="experience-card">
-          <p class="experience-meta">Casa Trigo Zero · Atendimento ao público</p>
-          <h3>Operação, vendas e relacionamento com clientes</h3>
-          <ul class="experience-list">
-            <li>Atendimento direto com foco em clareza, empatia e solução rápida.</li>
-            <li>Apoio em vendas e apresentação de produtos sem glúten.</li>
-            <li>Produção de conteúdo visual para fortalecer presença digital da marca.</li>
-          </ul>
-        </div>
       </section>
 
       <section id="links" class="section container reveal">
@@ -233,14 +218,8 @@
 
       <section id="projetos" class="section container reveal">
         <h2 class="section-title">Projetos</h2>
-        <div class="project-filters" id="projectFilters">
-          <button class="filter-btn active" type="button" data-filter="all">Todos</button>
-          <button class="filter-btn" type="button" data-filter="frontend">Front-end</button>
-          <button class="filter-btn" type="button" data-filter="conteudo">Conteúdo</button>
-          <button class="filter-btn" type="button" data-filter="design">Design</button>
-        </div>
         <div class="projects-grid">
-          <article class="project-card" data-category="frontend design">
+          <article class="project-card">
             <div class="project-image">
               <img src="fachada.png" alt="Fachada do projeto Casa Trigo Zero" />
             </div>
@@ -257,12 +236,9 @@
                 rel="noopener noreferrer"
                 >Ver Projeto</a
               >
-              <button class="btn btn-ghost project-details-btn" data-project="casatrigo" type="button">
-                Detalhes
-              </button>
             </div>
           </article>
-          <article class="project-card" data-category="frontend">
+          <article class="project-card">
             <div class="project-image">
               <img src="links.png" alt="Preview do projeto de portfólio pessoal" />
             </div>
@@ -270,12 +246,9 @@
               <h3>Portfólio Pessoal</h3>
               <p>Site responsivo feito com HTML, CSS e JavaScript.</p>
               <a class="btn btn-primary" href="#inicio">Ver Projeto</a>
-              <button class="btn btn-ghost project-details-btn" data-project="portfolio" type="button">
-                Detalhes
-              </button>
             </div>
           </article>
-          <article class="project-card" data-category="conteudo design">
+          <article class="project-card">
             <div class="project-image">
               <img src="projeto.png" alt="Preview do projeto de conteúdo digital" />
             </div>
@@ -291,39 +264,6 @@
                 rel="noopener noreferrer"
                 >Ver Projeto</a
               >
-              <button class="btn btn-ghost project-details-btn" data-project="conteudo" type="button">
-                Detalhes
-              </button>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section id="timeline" class="section container reveal">
-        <h2 class="section-title">Minha Evolução</h2>
-        <div class="timeline">
-          <article class="timeline-item">
-            <span class="timeline-dot"></span>
-            <div>
-              <p class="timeline-year">2024</p>
-              <h3>Atendimento e comunicação prática</h3>
-              <p>Base forte em contato humano, escuta ativa e resolução rápida.</p>
-            </div>
-          </article>
-          <article class="timeline-item">
-            <span class="timeline-dot"></span>
-            <div>
-              <p class="timeline-year">2025</p>
-              <h3>Edição de conteúdo digital</h3>
-              <p>Vídeos curtos, design para redes e foco em retenção de atenção.</p>
-            </div>
-          </article>
-          <article class="timeline-item">
-            <span class="timeline-dot"></span>
-            <div>
-              <p class="timeline-year">2026</p>
-              <h3>Front-end em evolução contínua</h3>
-              <p>Construção de interfaces funcionais, limpas e responsivas.</p>
             </div>
           </article>
         </div>
@@ -373,17 +313,6 @@
         </div>
       </div>
     </footer>
-
-    <div class="modal" id="projectModal" aria-hidden="true">
-      <div class="modal-overlay" data-close-modal></div>
-      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <button class="modal-close" id="modalClose" aria-label="Fechar modal">×</button>
-        <p class="modal-tag" id="modalTag"></p>
-        <h3 id="modalTitle"></h3>
-        <p id="modalDescription"></p>
-        <ul id="modalTech"></ul>
-      </div>
-    </div>
 
     <script src="script.js"></script>
   </body>
