@@ -5,7 +5,6 @@ const themeToggle = document.getElementById("themeToggle");
 const themeIcon = document.getElementById("themeIcon");
 const root = document.documentElement;
 const revealElements = document.querySelectorAll(".reveal");
-const scrollProgress = document.getElementById("scrollProgress");
 const sections = document.querySelectorAll("main section[id]");
 const heroVisual = document.querySelector(".hero-visual");
 const isMobileViewport = window.matchMedia("(max-width: 980px)").matches;
@@ -60,13 +59,6 @@ const revealObserver = new IntersectionObserver(
 
 revealElements.forEach((element) => revealObserver.observe(element));
 
-function updateScrollProgress() {
-  if (!scrollProgress) return;
-  const total = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = total > 0 ? (window.scrollY / total) * 100 : 0;
-  scrollProgress.style.width = `${progress}%`;
-}
-
 let sectionBounds = [];
 
 function refreshSectionBounds() {
@@ -104,7 +96,6 @@ window.addEventListener(
     if (scrollTicking) return;
     scrollTicking = true;
     window.requestAnimationFrame(() => {
-      updateScrollProgress();
       updateActiveNav();
       scrollTicking = false;
     });
@@ -117,14 +108,12 @@ window.addEventListener(
   () => {
     refreshSectionBounds();
     updateActiveNav();
-    updateScrollProgress();
   },
   { passive: true }
 );
 
 window.addEventListener("load", refreshSectionBounds, { once: true });
 refreshSectionBounds();
-updateScrollProgress();
 updateActiveNav();
 
 if (heroVisual && canUsePointerEffects) {
