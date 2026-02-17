@@ -71,17 +71,6 @@ body::before {
   z-index: -2;
 }
 
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  width: 0%;
-  background: var(--gradient);
-  z-index: 2000;
-  transition: width 0.12s linear;
-}
-
 .container {
   width: min(1100px, 92%);
   margin: 0 auto;
