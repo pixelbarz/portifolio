@@ -8,6 +8,7 @@ const revealElements = document.querySelectorAll(".reveal");
 const scrollProgress = document.getElementById("scrollProgress");
 const sections = document.querySelectorAll("main section[id]");
 const heroVisual = document.querySelector(".hero-visual");
+const isMobileViewport = window.matchMedia("(max-width: 980px)").matches;
 const canUsePointerEffects = window.matchMedia(
   "(hover: hover) and (pointer: fine)"
 ).matches;
@@ -60,18 +61,30 @@ const revealObserver = new IntersectionObserver(
 revealElements.forEach((element) => revealObserver.observe(element));
 
 function updateScrollProgress() {
+  if (!scrollProgress) return;
   const total = document.documentElement.scrollHeight - window.innerHeight;
   const progress = total > 0 ? (window.scrollY / total) * 100 : 0;
   scrollProgress.style.width = `${progress}%`;
 }
 
+let sectionBounds = [];
+
+function refreshSectionBounds() {
+  sectionBounds = Array.from(sections).map((section) => ({
+    id: section.id,
+    top: section.offsetTop,
+    bottom: section.offsetTop + section.offsetHeight,
+  }));
+}
+
 function updateActiveNav() {
+  if (sectionBounds.length === 0) return;
   const marker = window.scrollY + 120;
   let activeId = "";
 
-  sections.forEach((section) => {
-    const top = section.offsetTop;
-    const bottom = top + section.offsetHeight;
+  sectionBounds.forEach((section) => {
+    const top = section.top;
+    const bottom = section.bottom;
     if (marker >= top && marker < bottom) {
       activeId = section.id;
     }
@@ -99,6 +112,18 @@ window.addEventListener(
   { passive: true }
 );
 
+window.addEventListener(
+  "resize",
+  () => {
+    refreshSectionBounds();
+    updateActiveNav();
+    updateScrollProgress();
+  },
+  { passive: true }
+);
+
+window.addEventListener("load", refreshSectionBounds, { once: true });
+refreshSectionBounds();
 updateScrollProgress();
 updateActiveNav();
 
@@ -122,9 +147,9 @@ if (terminalLines.length > 0) {
       line.textContent = line.dataset.text || "";
     });
   } else {
-    const typeSpeed = 34;
-    const deleteSpeed = 22;
-    const linePause = 260;
+    const typeSpeed = isMobileViewport ? 46 : 34;
+    const deleteSpeed = isMobileViewport ? 30 : 22;
+    const linePause = isMobileViewport ? 210 : 260;
     const cyclePause = 500;
 
     let lineIndex = 0;
