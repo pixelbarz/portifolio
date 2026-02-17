@@ -9,6 +9,9 @@ const scrollProgress = document.getElementById("scrollProgress");
 const sections = document.querySelectorAll("main section[id]");
 const heroVisual = document.querySelector(".hero-visual");
 const buttons = document.querySelectorAll(".btn");
+const canUsePointerEffects = window.matchMedia(
+  "(hover: hover) and (pointer: fine)"
+).matches;
 
 if (menuToggle && navLinks) {
   menuToggle.addEventListener("click", () => {
@@ -81,15 +84,26 @@ function updateActiveNav() {
   });
 }
 
-window.addEventListener("scroll", () => {
-  updateScrollProgress();
-  updateActiveNav();
-});
+let scrollTicking = false;
+
+window.addEventListener(
+  "scroll",
+  () => {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    window.requestAnimationFrame(() => {
+      updateScrollProgress();
+      updateActiveNav();
+      scrollTicking = false;
+    });
+  },
+  { passive: true }
+);
 
 updateScrollProgress();
 updateActiveNav();
 
-if (heroVisual) {
+if (heroVisual && canUsePointerEffects) {
   window.addEventListener("mousemove", (event) => {
     const amountX = (event.clientX / window.innerWidth - 0.5) * 8;
     const amountY = (event.clientY / window.innerHeight - 0.5) * 8;
@@ -97,12 +111,14 @@ if (heroVisual) {
   });
 }
 
-buttons.forEach((btn) => {
-  btn.addEventListener("mousemove", (event) => {
-    const rect = btn.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    btn.style.setProperty("--mx", `${x}px`);
-    btn.style.setProperty("--my", `${y}px`);
+if (canUsePointerEffects) {
+  buttons.forEach((btn) => {
+    btn.addEventListener("mousemove", (event) => {
+      const rect = btn.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      btn.style.setProperty("--mx", `${x}px`);
+      btn.style.setProperty("--my", `${y}px`);
+    });
   });
-});
+}
