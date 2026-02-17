@@ -8,7 +8,6 @@ const revealElements = document.querySelectorAll(".reveal");
 const scrollProgress = document.getElementById("scrollProgress");
 const sections = document.querySelectorAll("main section[id]");
 const heroVisual = document.querySelector(".hero-visual");
-const buttons = document.querySelectorAll(".btn");
 const canUsePointerEffects = window.matchMedia(
   "(hover: hover) and (pointer: fine)"
 ).matches;
@@ -111,14 +110,64 @@ if (heroVisual && canUsePointerEffects) {
   });
 }
 
-if (canUsePointerEffects) {
-  buttons.forEach((btn) => {
-    btn.addEventListener("mousemove", (event) => {
-      const rect = btn.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
-      btn.style.setProperty("--mx", `${x}px`);
-      btn.style.setProperty("--my", `${y}px`);
+const terminalLines = document.querySelectorAll(".monitor-screen .code-line");
+
+if (terminalLines.length > 0) {
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (prefersReducedMotion) {
+    terminalLines.forEach((line) => {
+      line.textContent = line.dataset.text || "";
     });
-  });
+  } else {
+    const typeSpeed = 34;
+    const deleteSpeed = 22;
+    const linePause = 260;
+    const cyclePause = 500;
+
+    let lineIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    terminalLines.forEach((line) => {
+      line.textContent = "";
+      line.classList.remove("is-active");
+    });
+
+    const runTerminal = () => {
+      const currentLine = terminalLines[lineIndex];
+      const fullText = currentLine.dataset.text || "";
+
+      terminalLines.forEach((line, index) => {
+        line.classList.toggle("is-active", index === lineIndex);
+      });
+
+      if (!deleting) {
+        charIndex += 1;
+        currentLine.textContent = fullText.slice(0, charIndex);
+
+        if (charIndex >= fullText.length) {
+          deleting = true;
+          setTimeout(runTerminal, linePause);
+          return;
+        }
+      } else {
+        charIndex -= 1;
+        currentLine.textContent = fullText.slice(0, charIndex);
+
+        if (charIndex <= 0) {
+          deleting = false;
+          lineIndex = (lineIndex + 1) % terminalLines.length;
+          setTimeout(runTerminal, lineIndex === 0 ? cyclePause : 110);
+          return;
+        }
+      }
+
+      setTimeout(runTerminal, deleting ? deleteSpeed : typeSpeed);
+    };
+
+    runTerminal();
+  }
 }
