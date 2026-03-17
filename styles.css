@@ -445,9 +445,15 @@ h1 {
 }
 
 .services-grid,
-.projects-grid,
 .quick-contact-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.projects-grid {
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .process-grid {
