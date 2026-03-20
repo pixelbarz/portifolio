@@ -11,15 +11,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
     <div class="ambient-bg" aria-hidden="true">
       <span class="ambient-shape a"></span>
       <span class="ambient-shape b"></span>
+      <span class="ambient-shape c"></span>
+      <span class="ambient-grid"></span>
     </div>
 
     <header class="header">
@@ -41,7 +45,7 @@
           aria-label="Alternar tema"
           title="Alternar tema"
         >
-          <span id="themeIcon">🌙</span>
+          <span id="themeIcon">☾</span>
         </button>
 
         <button
@@ -72,19 +76,33 @@
             Eu desenho e desenvolvo páginas com estética forte, leitura clara e
             performance real para todos os dispositivos.
           </p>
+
           <div class="hero-meta">
             <span>UI minimalista</span>
             <span>Design fluido</span>
             <span>Entrega direta</span>
           </div>
+
           <div class="hero-actions">
             <a class="btn btn-primary" href="#projetos">Ver projetos</a>
             <a class="btn btn-secondary" href="#contato">Falar comigo</a>
           </div>
+
+          <div class="hero-trust card-glow">
+            <p>
+              Front-end em evolução com foco em clareza visual, experiência
+              mobile e entrega rápida.
+            </p>
+            <ul>
+              <li>Atualizado em março de 2026</li>
+              <li>Brasil</li>
+              <li>Resposta rápida</li>
+            </ul>
+          </div>
         </div>
 
         <aside class="hero-visual" aria-label="Terminal animado com stack">
-          <div class="monitor">
+          <div class="monitor card-glow">
             <div class="monitor-top">
               <span></span>
               <span></span>
@@ -92,54 +110,89 @@
             </div>
             <div class="monitor-screen">
               <p class="code-line" data-text="$ npm run build"></p>
-              <p class="code-line" data-text='const stack = ["HTML", "CSS", "JavaScript"];'></p>
-              <p class="code-line" data-text="optimize({ mobile: true, lighthouse: true });"></p>
-              <p class="code-line" data-text="deploy(); // pronto para produção"></p>
+              <p
+                class="code-line"
+                data-text='const stack = ["HTML", "CSS", "JavaScript"];'
+              ></p>
+              <p
+                class="code-line"
+                data-text="optimize({ mobile: true, lighthouse: true });"
+              ></p>
+              <p
+                class="code-line"
+                data-text="deploy(); // pronto para produção"
+              ></p>
             </div>
           </div>
+
           <div class="monitor-stats">
-            <article>
+            <article class="card-glow">
               <strong class="counter" data-target="3" data-suffix="+">0</strong>
               <span>Projetos publicados</span>
             </article>
-            <article>
+            <article class="card-glow">
               <strong class="counter" data-target="100" data-suffix="%">0</strong>
               <span>Foco em mobile</span>
             </article>
-            <article>
+            <article class="card-glow">
               <strong class="counter" data-target="24" data-suffix="h">0</strong>
               <span>Resposta rápida</span>
             </article>
-        </div>
+          </div>
         </aside>
       </section>
 
       <section id="sobre" class="section container reveal">
-        <h2 class="section-title">Sobre</h2>
+        <div class="section-head">
+          <p class="section-kicker">Sobre</p>
+          <h2 class="section-title">Construindo presença digital com impacto</h2>
+        </div>
+
         <p class="lead">
-          Sou estudante e criador digital. Adepto à comunicação, design e código para
-          construir páginas elegantes, organizadas e com boa experiência em qualquer tela.
+          Sou estudante e criador digital. Adepto à comunicação, design e código
+          para construir páginas elegantes, organizadas e com boa experiência em
+          qualquer tela.
         </p>
+
+        <div class="about-grid">
+          <article class="about-card card-glow">
+            <h3>Comunicação clara</h3>
+            <p>Narrativa visual objetiva para destacar o que importa.</p>
+          </article>
+          <article class="about-card card-glow">
+            <h3>Performance real</h3>
+            <p>Estrutura leve, responsiva e preparada para uso em produção.</p>
+          </article>
+          <article class="about-card card-glow">
+            <h3>Estética profissional</h3>
+            <p>Layout moderno com contraste, ritmo e leitura confortável.</p>
+          </article>
+        </div>
       </section>
 
       <section class="section container reveal manifesto">
         <p>
-          Menos ruído visual. Mais impacto visual, contraste e foco no que importa.
+          Menos ruído visual. Mais impacto visual, contraste e foco no que
+          importa.
         </p>
       </section>
 
       <section id="servicos" class="section container reveal">
-        <h2 class="section-title">Serviços</h2>
+        <div class="section-head">
+          <p class="section-kicker">Serviços</p>
+          <h2 class="section-title">Soluções para tirar ideias do papel</h2>
+        </div>
+
         <div class="services-grid">
-          <article class="service-card">
+          <article class="service-card card-glow">
             <h3>Landing Page</h3>
             <p>Página única orientada a conversão com narrativa direta.</p>
           </article>
-          <article class="service-card">
+          <article class="service-card card-glow">
             <h3>Portfólio Profissional</h3>
             <p>Site pessoal para destacar projetos, habilidades e posicionamento.</p>
           </article>
-          <article class="service-card">
+          <article class="service-card card-glow">
             <h3>Refatoração Visual</h3>
             <p>Melhoria de layout, responsividade e hierarquia de um site existente.</p>
           </article>
@@ -147,24 +200,28 @@
       </section>
 
       <section id="processo" class="section container reveal">
-        <h2 class="section-title">Processo</h2>
+        <div class="section-head">
+          <p class="section-kicker">Processo</p>
+          <h2 class="section-title">Fluxo direto, sem complicação</h2>
+        </div>
+
         <div class="process-grid">
-          <article class="process-card">
+          <article class="process-card card-glow">
             <strong>1</strong>
             <h3>Briefing</h3>
             <p>Objetivo, público e conteúdo principal.</p>
           </article>
-          <article class="process-card">
+          <article class="process-card card-glow">
             <strong>2</strong>
             <h3>Estrutura</h3>
             <p>Arquitetura das seções e fluxo da página.</p>
           </article>
-          <article class="process-card">
+          <article class="process-card card-glow">
             <strong>3</strong>
             <h3>Design</h3>
             <p>Visual limpo, contraste e legibilidade.</p>
           </article>
-          <article class="process-card">
+          <article class="process-card card-glow">
             <strong>4</strong>
             <h3>Entrega</h3>
             <p>Publicação e ajustes finais.</p>
@@ -173,8 +230,12 @@
       </section>
 
       <section class="section container reveal">
-        <h2 class="section-title">Antes e Depois</h2>
-        <article class="before-after">
+        <div class="section-head">
+          <p class="section-kicker">Resultado</p>
+          <h2 class="section-title">Antes e Depois</h2>
+        </div>
+
+        <article class="before-after card-glow">
           <div class="before-after-grid">
             <div class="compare-card before">
               <h3>Antes</h3>
@@ -197,9 +258,13 @@
       </section>
 
       <section id="projetos" class="section container reveal">
-        <h2 class="section-title">Projetos</h2>
+        <div class="section-head">
+          <p class="section-kicker">Portfólio</p>
+          <h2 class="section-title">Projetos em destaque</h2>
+        </div>
+
         <div class="projects-grid">
-          <article class="project-card">
+          <article class="project-card card-glow">
             <div class="project-image">
               <img src="fachada.png" alt="Projeto Casa Trigo Zero" loading="lazy" />
             </div>
@@ -217,7 +282,7 @@
             </div>
           </article>
 
-          <article class="project-card">
+          <article class="project-card card-glow">
             <div class="project-image">
               <img src="links.png" alt="Projeto de portfólio pessoal" loading="lazy" />
             </div>
@@ -232,43 +297,56 @@
       </section>
 
       <section id="contato" class="section container reveal">
-        <h2 class="section-title">Contato</h2>
-        <div class="contact-panel">
+        <div class="contact-panel card-glow">
+          <div class="section-head compact">
+            <p class="section-kicker">Contato</p>
+            <h2 class="section-title">Vamos colocar sua ideia no ar</h2>
+          </div>
           <p>
             Se você quer um site mais bonito e leve, me chama nos canais abaixo.
           </p>
           <div class="quick-contact-grid">
             <a
-              class="quick-contact-card"
+              class="quick-contact-card card-glow"
               href="https://www.linkedin.com/in/jos%C3%A9-braz-9842023a8/"
               target="_blank"
               rel="noopener noreferrer"
             >
               <h3>LinkedIn</h3>
               <p>Contato profissional</p>
+              <span class="quick-arrow" aria-hidden="true">↗</span>
             </a>
             <a
-              class="quick-contact-card"
+              class="quick-contact-card card-glow"
               href="https://github.com/pixelbarz"
               target="_blank"
               rel="noopener noreferrer"
             >
               <h3>GitHub</h3>
               <p>Repositórios e código</p>
+              <span class="quick-arrow" aria-hidden="true">↗</span>
             </a>
             <a
-              class="quick-contact-card"
+              class="quick-contact-card card-glow"
               href="https://www.twitch.tv/pixelbarz"
               target="_blank"
               rel="noopener noreferrer"
             >
               <h3>Twitch</h3>
               <p>Lives e comunidade</p>
+              <span class="quick-arrow" aria-hidden="true">↗</span>
             </a>
           </div>
         </div>
       </section>
     </main>
+
+    <section class="cta-band">
+      <div class="container cta-band-content">
+        <p>Design estratégico + código limpo para gerar confiança na primeira impressão.</p>
+        <a class="btn btn-primary" href="#contato">Conversar agora</a>
+      </div>
+    </section>
 
     <footer class="footer">
       <div class="container footer-content">
