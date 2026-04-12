@@ -6,8 +6,6 @@ const themeIcon = document.getElementById("themeIcon");
 const root = document.documentElement;
 const revealElements = document.querySelectorAll(".reveal");
 const sections = document.querySelectorAll("main section[id]");
-const heroVisual = document.querySelector(".hero-visual");
-const terminalLines = document.querySelectorAll(".monitor-screen .code-line");
 const rotatingHeadline = document.getElementById("rotatingHeadline");
 const counters = document.querySelectorAll(".counter");
 const scrollProgress = document.getElementById("scrollProgress");
@@ -161,30 +159,11 @@ window.addEventListener(
   { passive: true }
 );
 
-if (heroVisual && canUsePointerEffects && !isMobileViewport && !prefersReducedMotion) {
-  let pointerFrame = 0;
-  let pointerX = 0;
-  let pointerY = 0;
-
-  const applyPointerMotion = () => {
-    pointerFrame = 0;
-    heroVisual.style.transform = `translate3d(${pointerX}px, ${pointerY}px, 0)`;
-  };
-
-  window.addEventListener("mousemove", (event) => {
-    pointerX = (event.clientX / window.innerWidth - 0.5) * 10;
-    pointerY = (event.clientY / window.innerHeight - 0.5) * 10;
-
-    if (pointerFrame) return;
-    pointerFrame = window.requestAnimationFrame(applyPointerMotion);
-  });
-}
-
 if (rotatingHeadline) {
   const phrases = [
-    "experiências rápidas.",
-    "interfaces memoráveis.",
-    "presença digital forte.",
+    "boa experiência. :P",
+    "interfaces memoráveis. :D",
+    "presença forte. :O",
   ];
 
   if (prefersReducedMotion) {
@@ -247,87 +226,53 @@ if (counters.length > 0) {
   }
 }
 
-if (terminalLines.length > 0) {
-  if (prefersReducedMotion) {
-    terminalLines.forEach((line) => {
-      line.textContent = line.dataset.text || "";
-    });
-  } else {
-    const typeSpeed = isMobileViewport ? 44 : 30;
-    const deleteSpeed = isMobileViewport ? 30 : 20;
-    const linePause = 280;
-    const cyclePause = 430;
-
-    let lineIndex = 0;
-    let charIndex = 0;
-    let deleting = false;
-
-    terminalLines.forEach((line) => {
-      line.textContent = "";
-      line.classList.remove("is-active");
-    });
-
-    const jitter = (base, spread) => Math.round(base + Math.random() * spread);
-
-    const runTerminal = () => {
-      const currentLine = terminalLines[lineIndex];
-      const fullText = currentLine.dataset.text || "";
-
-      terminalLines.forEach((line, index) => {
-        line.classList.toggle("is-active", index === lineIndex);
-      });
-
-      if (!deleting) {
-        charIndex += 1;
-        currentLine.textContent = fullText.slice(0, charIndex);
-
-        if (charIndex >= fullText.length) {
-          deleting = true;
-          setTimeout(runTerminal, linePause);
-          return;
-        }
-      } else {
-        charIndex -= 1;
-        currentLine.textContent = fullText.slice(0, charIndex);
-
-        if (charIndex <= 0) {
-          deleting = false;
-          lineIndex = (lineIndex + 1) % terminalLines.length;
-          setTimeout(runTerminal, lineIndex === 0 ? cyclePause : 140);
-          return;
-        }
-      }
-
-      const currentText = currentLine.textContent;
-      const lastChar = currentText.charAt(currentText.length - 1);
-      const punctuationPause = /[,.;:]/.test(lastChar) ? 36 : 0;
-      const baseDelay = deleting
-        ? jitter(deleteSpeed, 16)
-        : jitter(typeSpeed, 20);
-
-      setTimeout(runTerminal, baseDelay + punctuationPause);
-    };
-
-    runTerminal();
-  }
-}
-
 if (canUsePointerEffects && !prefersReducedMotion && glowCards.length > 0) {
   glowCards.forEach((card) => {
+    let targetX = 50;
+    let targetY = 50;
+    let currentX = 50;
+    let currentY = 50;
+    let frame = 0;
+
+    const animateGlow = () => {
+      currentX += (targetX - currentX) * 0.18;
+      currentY += (targetY - currentY) * 0.18;
+
+      card.style.setProperty("--glow-x", `${currentX.toFixed(2)}%`);
+      card.style.setProperty("--glow-y", `${currentY.toFixed(2)}%`);
+
+      const settled =
+        Math.abs(targetX - currentX) < 0.06 &&
+        Math.abs(targetY - currentY) < 0.06;
+
+      if (settled) {
+        frame = 0;
+        return;
+      }
+
+      frame = window.requestAnimationFrame(animateGlow);
+    };
+
+    const startGlow = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(animateGlow);
+    };
+
     card.addEventListener("mousemove", (event) => {
       const rect = card.getBoundingClientRect();
-      const x = ((event.clientX - rect.left) / rect.width) * 100;
-      const y = ((event.clientY - rect.top) / rect.height) * 100;
+      targetX = Math.min(Math.max(((event.clientX - rect.left) / rect.width) * 100, 0), 100);
+      targetY = Math.min(Math.max(((event.clientY - rect.top) / rect.height) * 100, 0), 100);
+      startGlow();
+    });
 
-      card.style.setProperty("--glow-x", `${x}%`);
-      card.style.setProperty("--glow-y", `${y}%`);
-      card.classList.add("is-hover");
+    card.addEventListener("mouseenter", () => {
+      startGlow();
     });
 
     card.addEventListener("mouseleave", () => {
-      card.classList.remove("is-hover");
-      card.style.setProperty("--glow-x", "50%");
-      card.style.setProperty("--glow-y", "50%");
+      targetX = 50;
+      targetY = 50;
+      startGlow();
     });
   });
 }
