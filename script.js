@@ -1,292 +1,206 @@
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
-const navAnchors = document.querySelectorAll(".nav-links a");
-const themeToggle = document.getElementById("themeToggle");
-const themeIcon = document.getElementById("themeIcon");
-const root = document.documentElement;
-const revealElements = document.querySelectorAll(".reveal");
-const sections = document.querySelectorAll("main section[id]");
-const rotatingHeadline = document.getElementById("rotatingHeadline");
-const counters = document.querySelectorAll(".counter");
-const scrollProgress = document.getElementById("scrollProgress");
-const glowCards = document.querySelectorAll(".card-glow");
+const menuToggle    = document.getElementById("menuToggle");
+const navLinks      = document.getElementById("navLinks");
+const navAnchors    = document.querySelectorAll(".nav-links a");
+const themeToggle   = document.getElementById("themeToggle");
+const themeIcon     = document.getElementById("themeIcon");
+const root          = document.documentElement;
+const revealEls     = document.querySelectorAll(".reveal");
+const sections      = document.querySelectorAll("main section[id]");
+const rotator       = document.getElementById("rotatingHeadline");
+const counters      = document.querySelectorAll(".counter");
+const scrollBar     = document.getElementById("scrollProgress");
+const glowCards     = document.querySelectorAll(".card-glow");
 
-const prefersReducedMotion = window.matchMedia(
-  "(prefers-reduced-motion: reduce)"
-).matches;
-const canUsePointerEffects = window.matchMedia(
-  "(hover: hover) and (pointer: fine)"
-).matches;
-const isMobileViewport = window.matchMedia("(max-width: 980px)").matches;
+const reducedMotion  = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const canHover       = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+const isMobile       = window.matchMedia("(max-width: 980px)").matches;
+
 
 if (menuToggle && navLinks) {
   menuToggle.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("open");
-    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    const open = navLinks.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", String(open));
   });
-
-  document.addEventListener("click", (event) => {
-    const target = event.target;
-    if (!(target instanceof Node)) return;
-
-    if (navLinks.contains(target) || menuToggle.contains(target)) return;
-
+  document.addEventListener("click", (e) => {
+    if (navLinks.contains(e.target) || menuToggle.contains(e.target)) return;
     navLinks.classList.remove("open");
     menuToggle.setAttribute("aria-expanded", "false");
   });
 }
 
-navAnchors.forEach((anchor) => {
-  anchor.addEventListener("click", () => {
-    if (!navLinks || !menuToggle) return;
-    navLinks.classList.remove("open");
-    menuToggle.setAttribute("aria-expanded", "false");
+navAnchors.forEach((a) => {
+  a.addEventListener("click", () => {
+    navLinks && navLinks.classList.remove("open");
+    menuToggle && menuToggle.setAttribute("aria-expanded", "false");
   });
 });
+
 
 function setTheme(theme) {
   root.setAttribute("data-theme", theme);
   localStorage.setItem("theme", theme);
-
-  if (themeIcon) {
-    themeIcon.textContent = theme === "dark" ? "☀" : "☾";
-  }
+  if (themeIcon) themeIcon.textContent = theme === "dark" ? "☀" : "☾";
 }
 
-const savedTheme = localStorage.getItem("theme");
-if (savedTheme === "dark" || savedTheme === "light") {
-  setTheme(savedTheme);
+const saved = localStorage.getItem("theme");
+if (saved === "dark" || saved === "light") {
+  setTheme(saved);
 } else {
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  setTheme(prefersDark ? "dark" : "light");
+  setTheme("dark"); 
 }
 
-if (themeToggle) {
-  themeToggle.addEventListener("click", () => {
-    const currentTheme = root.getAttribute("data-theme");
-    setTheme(currentTheme === "dark" ? "light" : "dark");
-  });
-}
-
-revealElements.forEach((element, index) => {
-  element.style.setProperty("--delay", `${index * 75}ms`);
+themeToggle && themeToggle.addEventListener("click", () => {
+  setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
 });
 
-if (prefersReducedMotion) {
-  revealElements.forEach((element) => {
-    element.classList.add("visible");
-  });
-} else {
-  const revealObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.12 }
-  );
 
-  revealElements.forEach((element) => revealObserver.observe(element));
+revealEls.forEach((el, i) => el.style.setProperty("--delay", `${i * 70}ms`));
+
+if (reducedMotion) {
+  revealEls.forEach((el) => el.classList.add("visible"));
+} else {
+  const obs = new IntersectionObserver((entries, o) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add("visible");
+      o.unobserve(e.target);
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach((el) => obs.observe(el));
 }
 
-let sectionBounds = [];
 
-function refreshSectionBounds() {
-  sectionBounds = Array.from(sections).map((section) => ({
-    id: section.id,
-    top: section.offsetTop,
-    bottom: section.offsetTop + section.offsetHeight,
+let bounds = [];
+
+function refreshBounds() {
+  bounds = Array.from(sections).map((s) => ({
+    id: s.id,
+    top: s.offsetTop,
+    bottom: s.offsetTop + s.offsetHeight,
   }));
 }
 
-function updateActiveNav() {
-  if (sectionBounds.length === 0) return;
-
-  const marker = window.scrollY + 145;
+function updateNav() {
+  if (!bounds.length) return;
+  const mark = window.scrollY + 130;
   let activeId = "";
-
-  sectionBounds.forEach((section) => {
-    if (marker >= section.top && marker < section.bottom) {
-      activeId = section.id;
-    }
-  });
-
-  navAnchors.forEach((link) => {
-    const target = link.getAttribute("href")?.replace("#", "");
-    link.classList.toggle("active", target === activeId);
+  bounds.forEach((b) => { if (mark >= b.top && mark < b.bottom) activeId = b.id; });
+  navAnchors.forEach((a) => {
+    const t = a.getAttribute("href")?.replace("#", "");
+    a.classList.toggle("active", t === activeId);
   });
 }
 
-function updateScrollProgress() {
-  if (!scrollProgress) return;
 
-  const scrollableHeight =
-    document.documentElement.scrollHeight - window.innerHeight;
-
-  const progress =
-    scrollableHeight > 0
-      ? Math.min((window.scrollY / scrollableHeight) * 100, 100)
-      : 0;
-
-  scrollProgress.style.width = `${progress}%`;
+function updateProgress() {
+  if (!scrollBar) return;
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  scrollBar.style.width = total > 0 ? `${Math.min((window.scrollY / total) * 100, 100)}%` : "0%";
 }
 
-let scrollTicking = false;
-window.addEventListener(
-  "scroll",
-  () => {
-    if (scrollTicking) return;
+let ticking = false;
+window.addEventListener("scroll", () => {
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(() => {
+    updateNav();
+    updateProgress();
+    ticking = false;
+  });
+}, { passive: true });
 
-    scrollTicking = true;
-    window.requestAnimationFrame(() => {
-      updateActiveNav();
-      updateScrollProgress();
-      scrollTicking = false;
-    });
-  },
-  { passive: true }
-);
+window.addEventListener("resize", () => {
+  refreshBounds();
+  updateNav();
+  updateProgress();
+}, { passive: true });
 
-window.addEventListener(
-  "resize",
-  () => {
-    refreshSectionBounds();
-    updateActiveNav();
-    updateScrollProgress();
-  },
-  { passive: true }
-);
 
-if (rotatingHeadline) {
+if (rotator) {
   const phrases = [
     "boa experiência. :P",
     "interfaces memoráveis. :D",
     "presença forte. :O",
   ];
 
-  if (prefersReducedMotion) {
-    rotatingHeadline.textContent = phrases[0];
+  if (reducedMotion) {
+    rotator.textContent = phrases[0];
   } else {
-    let phraseIndex = 0;
-
-    window.setInterval(() => {
-      rotatingHeadline.classList.add("is-changing");
-
-      window.setTimeout(() => {
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-        rotatingHeadline.textContent = phrases[phraseIndex];
-        rotatingHeadline.classList.remove("is-changing");
-      }, 220);
-    }, isMobileViewport ? 2800 : 2350);
+    let idx = 0;
+    setInterval(() => {
+      rotator.classList.add("is-changing");
+      setTimeout(() => {
+        idx = (idx + 1) % phrases.length;
+        rotator.textContent = phrases[idx];
+        rotator.classList.remove("is-changing");
+      }, 210);
+    }, isMobile ? 2800 : 2400);
   }
 }
 
-if (counters.length > 0) {
-  const animateCounter = (counter) => {
-    const target = Number(counter.dataset.target || "0");
-    const suffix = counter.dataset.suffix || "";
-    const duration = 950;
-    const start = performance.now();
 
-    const tick = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const value = Math.round(target * eased);
-      counter.textContent = `${value}${suffix}`;
+const animateCounter = (el) => {
+  const target = Number(el.dataset.target || 0);
+  const suffix = el.dataset.suffix || "";
+  const dur = 900;
+  const t0 = performance.now();
 
-      if (progress < 1) {
-        requestAnimationFrame(tick);
-      }
-    };
-
-    requestAnimationFrame(tick);
+  const tick = (now) => {
+    const p = Math.min((now - t0) / dur, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = `${Math.round(target * eased)}${suffix}`;
+    if (p < 1) requestAnimationFrame(tick);
   };
+  requestAnimationFrame(tick);
+};
 
-  if (prefersReducedMotion) {
-    counters.forEach((counter) => {
-      const target = Number(counter.dataset.target || "0");
-      const suffix = counter.dataset.suffix || "";
-      counter.textContent = `${target}${suffix}`;
+if (counters.length) {
+  if (reducedMotion) {
+    counters.forEach((el) => {
+      el.textContent = `${el.dataset.target}${el.dataset.suffix || ""}`;
     });
   } else {
-    const counterObserver = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          animateCounter(entry.target);
-          observer.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.45 }
-    );
-
-    counters.forEach((counter) => counterObserver.observe(counter));
+    const cObs = new IntersectionObserver((entries, o) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        animateCounter(e.target);
+        o.unobserve(e.target);
+      });
+    }, { threshold: 0.45 });
+    counters.forEach((el) => cObs.observe(el));
   }
 }
 
-if (canUsePointerEffects && !prefersReducedMotion && glowCards.length > 0) {
+
+if (canHover && !reducedMotion && glowCards.length) {
   glowCards.forEach((card) => {
-    let targetX = 50;
-    let targetY = 50;
-    let currentX = 50;
-    let currentY = 50;
-    let frame = 0;
+    let tx = 50, ty = 50, cx = 50, cy = 50, frame = 0;
 
-    const animateGlow = () => {
-      currentX += (targetX - currentX) * 0.18;
-      currentY += (targetY - currentY) * 0.18;
-
-      card.style.setProperty("--glow-x", `${currentX.toFixed(2)}%`);
-      card.style.setProperty("--glow-y", `${currentY.toFixed(2)}%`);
-
-      const settled =
-        Math.abs(targetX - currentX) < 0.06 &&
-        Math.abs(targetY - currentY) < 0.06;
-
-      if (settled) {
-        frame = 0;
-        return;
-      }
-
-      frame = window.requestAnimationFrame(animateGlow);
+    const animate = () => {
+      cx += (tx - cx) * 0.16;
+      cy += (ty - cy) * 0.16;
+      card.style.setProperty("--glow-x", `${cx.toFixed(2)}%`);
+      card.style.setProperty("--glow-y", `${cy.toFixed(2)}%`);
+      const settled = Math.abs(tx - cx) < 0.08 && Math.abs(ty - cy) < 0.08;
+      frame = settled ? 0 : requestAnimationFrame(animate);
     };
 
-    const startGlow = () => {
-      if (frame) return;
-      frame = window.requestAnimationFrame(animateGlow);
-    };
+    const start = () => { if (!frame) frame = requestAnimationFrame(animate); };
 
-    card.addEventListener("mousemove", (event) => {
-      const rect = card.getBoundingClientRect();
-      targetX = Math.min(Math.max(((event.clientX - rect.left) / rect.width) * 100, 0), 100);
-      targetY = Math.min(Math.max(((event.clientY - rect.top) / rect.height) * 100, 0), 100);
-      startGlow();
+    card.addEventListener("mousemove", (e) => {
+      const r = card.getBoundingClientRect();
+      tx = Math.min(Math.max(((e.clientX - r.left) / r.width) * 100, 0), 100);
+      ty = Math.min(Math.max(((e.clientY - r.top) / r.height) * 100, 0), 100);
+      start();
     });
 
-    card.addEventListener("mouseenter", () => {
-      startGlow();
-    });
-
-    card.addEventListener("mouseleave", () => {
-      targetX = 50;
-      targetY = 50;
-      startGlow();
-    });
+    card.addEventListener("mouseenter", start);
+    card.addEventListener("mouseleave", () => { tx = 50; ty = 50; start(); });
   });
 }
 
-window.addEventListener(
-  "load",
-  () => {
-    refreshSectionBounds();
-    updateActiveNav();
-    updateScrollProgress();
-  },
-  { once: true }
-);
 
-refreshSectionBounds();
-updateActiveNav();
-updateScrollProgress();
+window.addEventListener("load", () => { refreshBounds(); updateNav(); updateProgress(); }, { once: true });
+refreshBounds();
+updateNav();
+updateProgress();
