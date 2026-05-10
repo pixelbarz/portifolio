@@ -15,6 +15,18 @@ const reducedMotion  = window.matchMedia("(prefers-reduced-motion: reduce)").mat
 const canHover       = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 const isMobile       = window.matchMedia("(max-width: 980px)").matches;
 
+const bootScreen     = document.getElementById("bootScreen");
+
+
+// ── BOOT SCREEN ──
+if (bootScreen) {
+  if (reducedMotion) {
+    bootScreen.style.display = "none";
+  } else {
+    setTimeout(() => { bootScreen.classList.add("done"); }, 2600);
+  }
+}
+
 
 if (menuToggle && navLinks) {
   menuToggle.addEventListener("click", () => {
@@ -127,14 +139,50 @@ if (rotator) {
     rotator.textContent = phrases[0];
   } else {
     let idx = 0;
-    setInterval(() => {
-      rotator.classList.add("is-changing");
-      setTimeout(() => {
-        idx = (idx + 1) % phrases.length;
-        rotator.textContent = phrases[idx];
-        rotator.classList.remove("is-changing");
-      }, 210);
-    }, isMobile ? 2800 : 2400);
+    let isTyping = false;
+    let rotateTimer = null;
+
+    function typeText(el, text, speed, cb) {
+      let i = 0;
+      el.textContent = "";
+      const tick = () => {
+        if (i >= text.length) { if (cb) cb(); return; }
+        el.textContent += text[i++];
+        setTimeout(tick, speed);
+      };
+      tick();
+    }
+
+    function deleteText(el, speed, cb) {
+      const txt = el.textContent;
+      let i = txt.length;
+      const tick = () => {
+        if (i <= 0) { if (cb) cb(); return; }
+        el.textContent = txt.slice(0, --i);
+        setTimeout(tick, speed);
+      };
+      tick();
+    }
+
+    function startRotate() {
+      if (isTyping) return;
+      isTyping = true;
+      const next = (idx + 1) % phrases.length;
+      deleteText(rotator, 8, () => {
+        idx = next;
+        typeText(rotator, phrases[idx], 16, () => {
+          isTyping = false;
+          rotateTimer = setTimeout(startRotate, isMobile ? 4000 : 3000);
+        });
+      });
+    }
+
+    const bootDelay = bootScreen && !reducedMotion ? 3400 : 400;
+    setTimeout(() => {
+      typeText(rotator, phrases[0], 18, () => {
+        rotateTimer = setTimeout(startRotate, 3500);
+      });
+    }, bootDelay);
   }
 }
 

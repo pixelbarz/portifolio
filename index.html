@@ -25,6 +25,16 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div id="bootScreen" class="boot-screen" aria-hidden="true">
+      <div class="boot-content">
+        <p class="boot-prompt">jose-braz.dev terminal</p>
+        <p class="boot-line">> iniciando...</p>
+        <p class="boot-line boot-delay-1">> carregando portfolio...</p>
+        <p class="boot-line boot-delay-2">> pronto.</p>
+        <div class="boot-bar"><div class="boot-bar-fill"></div></div>
+      </div>
+    </div>
+
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
     <div class="ambient-bg" aria-hidden="true">
@@ -69,7 +79,7 @@
       <section id="inicio" class="hero container reveal">
         <div class="hero-content">
           <p class="hero-tag">PORTFOLIO · WEB FRONT-END</p>
-          <h1>
+          <h1 class="terminal-glow">
             Design bonito para<br>
             <span id="rotatingHeadline" class="headline-rotator">boa experiência. :P</span>
           </h1>
