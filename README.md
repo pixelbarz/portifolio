@@ -1,140 +1,119 @@
-<div align="center">
+# portifolio — pixelbarz
 
-```
-██████╗  ██████╗ ██████╗ ████████╗███████╗ ██████╗ ██╗     ██╗ ██████╗ 
-██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝██╔═══██╗██║     ██║██╔═══██╗
-██████╔╝██║   ██║██████╔╝   ██║   █████╗  ██║   ██║██║     ██║██║   ██║
-██╔═══╝ ██║   ██║██╔══██╗   ██║   ██╔══╝  ██║   ██║██║     ██║██║   ██║
-██║     ╚██████╔╝██║  ██║   ██║   ██║     ╚██████╔╝███████╗██║╚██████╔╝
-╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝      ╚═════╝ ╚══════╝╚═╝ ╚═════╝ 
-                                                                       
-  josé braz · front-end developer
-```
+Portfólio pessoal feito com HTML, CSS e JavaScript puro. Isso aqui não ta puro sinceramente.
 
-**Portfólio pessoal moderno, fluido e minimalista — sem frameworks, 100% vanilla.**
-
-[![Live](https://img.shields.io/badge/live-josebraz.cc-blueviolet?style=flat-square&logo=github)](https://josebraz.cc)
-[![HTML](https://img.shields.io/badge/HTML-30%25-orange?style=flat-square&logo=html5)](.)
-[![CSS](https://img.shields.io/badge/CSS-54%25-blue?style=flat-square&logo=css3)](.)
-[![JS](https://img.shields.io/badge/JavaScript-16%25-yellow?style=flat-square&logo=javascript)](.)
-[![Status](https://img.shields.io/badge/status-em_evolução_:D-brightgreen?style=flat-square)](.)
-
-</div>
+Acesse em: [josebraz.cc](https://josebraz.cc)
 
 ---
 
-## ✦ Preview
+## Sobre o projeto
 
-> **→ [josebraz.cc](https://josebraz.cc)**
+Site de portfólio com identidade visual inspirada em interfaces de videogames japoneses e dashboards retrô-futuristas. A proposta foi criar algo que tivesse personalidade própria em vez de parecer mais um template do Figma. (bruh)
 
-![preview](preview.png)
-
----
-
-## ✦ Sobre
-
-Portfólio pessoal de **José Braz (pixelbarz)** — estudante e front-end developer em evolução. O site apresenta trabalho, serviços e formas de contato com uma UI inspirada em terminais e estética retro-tech.
-
-Feito do zero com HTML, CSS e JavaScript puro. Sem dependências, sem frameworks, sem frescura.
+O design prioriza azul como cor dominante, tipografia angulosa, elementos sem border-radius excessivo e microanimações que existem por um motivo real, não só pra impressionar o visitante por 3 segundos.
 
 ---
 
-## ✦ Seções
-
-| Seção | O que tem |
-|---|---|
-| `#inicio` | Hero com headline rotativa, foto, stats com contador animado |
-| `#sobre` | Apresentação e valores: comunicação, performance, estética |
-| `#servicos` | Landing page, portfólio profissional, refatoração visual |
-| `resultado` | Comparativo visual antes/depois |
-| `#projetos` | Cards de projetos com imagens e links |
-| `#contato` | Cards rápidos para LinkedIn, GitHub e link page |
-
----
-
-## ✦ Features
-
-- 🖥️ **Boot screen** — tela de terminal animada no carregamento
-- 🌗 **Tema claro/escuro** — toggle com persistência em `localStorage`
-- 📜 **Scroll progress bar** — barra de progresso no topo
-- ✨ **Reveal on scroll** — elementos entram com fade-in ao rolar
-- 🔢 **Contadores animados** — números incrementam ao entrar na tela
-- 🔄 **Headline rotativa** — texto do hero muda automaticamente
-- 📱 **Totalmente responsivo** — menu hambúrguer para mobile
-- 🎨 **Fundo animado** — ambient shapes e grid em movimento
-- ⚡ **Zero dependências** — HTML + CSS + JS vanilla puro
-
----
-
-## ✦ Stack
-
-| Tecnologia | Uso |
-|---|---|
-| `HTML5` | Estrutura semântica, OG tags, acessibilidade |
-| `CSS3` | Variáveis, animações, grid, temas claro/escuro |
-| `JavaScript` | Boot screen, tema, contadores, reveal, menu |
-| `JetBrains Mono` | Fonte mono dos elementos de terminal |
-| `Space Grotesk` | Fonte principal do conteúdo |
-| `GitHub Pages` | Deploy via domínio customizado `josebraz.cc` |
-
----
-
-## ✦ Estrutura
+## Estrutura do projeto
 
 ```
 portifolio/
-├── index.html        # Toda a estrutura da página
-├── styles.css        # Estilos principais (temas, layout, animações)
-├── style.css         # Estilos complementares
-├── script.js         # Interatividade (boot, tema, counters, scroll)
-├── barzpfpwoah.png   # Foto de perfil
-├── fachada.png       # Screenshot do projeto Casa Trigo Zero
-├── links.png         # Screenshot da link page
-├── preview.png       # Preview do portfólio (usado no og:image)
-├── favicon.ico       # Ícone da aba
-└── CNAME             # Domínio customizado josebraz.cc
+├── index.html         pagina principal
+├── style.css          todo o estilo, variaveis e responsividade
+├── script.js          logica de interacao, animacoes e player
+├── barzpfpwoah.png    foto de perfil
+├── fachada.png        screenshot do projeto Casa Trigo Zero
+├── links.png          screenshot do portifolio
+├── persona.png        capa do album para o player de vinil
+├── persona.mp3        musica de fundo
+├── preview.png        imagem de preview para Open Graph
+├── favicon.ico        icone da aba
+└── CNAME              dominio customizado para o GitHub Pages
 ```
 
 ---
 
-## ✦ Rodando localmente
+## Funcionalidades
+
+**Interface**
+
+- Boot screen com barra de progresso e porcentagem animada ao carregar a pagina
+- Navbar fixa com active state baseado na secao visivel na tela
+- Menu hamburguer para mobile com animacao de abertura
+- Alternador de tema claro e escuro com persistencia em `localStorage`
+- Barra de progresso de scroll no topo da pagina
+- Animacoes de entrada (`reveal`) usando `IntersectionObserver`
+
+**Visual**
+
+- Grid de fundo com linhas que remetem a HUDs de jogos
+- Cantos decorativos angulares nos cards que aparecem no hover
+- Barras de stats de personagem animadas na secao do perfil
+- Efeito de scanlines e vignette sutis para dar textura de tela CRT
+- Cursor piscante no titulo rotativo
+- Contador de numeros animado com easing cubico
+
+**Player de musica**
+
+- Player fixo no canto inferior esquerdo com disco de vinil giratório
+- Capa do album exibida no centro do disco via `persona.png`
+- Rotacao CSS que pausa suavemente quando a musica e pausada
+- Agulha com dois estados visuais: afastada (pausado) e encostada no disco (tocando)
+- Botao para minimizar o player sem perder o estado de reproducao
+- Autoplay com fallback para primeiro clique do usuario (politica dos navegadores)
+
+---
+
+## Tecnologias utilizadas
+
+- HTML5 semantico
+- CSS3 com variaveis customizadas, `clip-path`, `IntersectionObserver` e animacoes por keyframe
+- JavaScript puro, sem bibliotecas externas
+- Google Fonts: Rajdhani, Share Tech Mono, Inter
+- GitHub Pages para deploy continuo
+
+---
+
+## Como rodar localmente
+
+Nao tem build, nao tem `npm install`, nao tem nada que precise de terminal.
+
+1. Clone o repositorio:
 
 ```bash
-# Clone o repositório
 git clone https://github.com/pixelbarz/portifolio.git
-
-# Entre na pasta
-cd portifolio
-
-# Suba um servidor local (Python)
-python3 -m http.server 3000
-
-# Acesse no browser
-# → http://localhost:3000
 ```
 
-> Também funciona só abrindo o `index.html` direto, mas o servidor local evita problemas com fontes e assets.
+2. Abra a pasta no VS Code e use a extensao Live Server, ou simplesmente abra o `index.html` direto no navegador.
+
+O player de musica precisa de um servidor local para funcionar corretamente por causa das restricoes de autoplay e CORS em arquivos locais. O Live Server resolve isso sem dor.
 
 ---
 
-## ✦ Projetos em destaque
+## Personalizacao
 
-- **[Casa Trigo Zero](https://pixelbarz.github.io/casatrigozero/)** — Landing page para cliente real
-- **[Links do Barz](https://pixelbarz.github.io/linksdobarz/)** — Link page pessoal com terminal interativo
+**Conteudo:** edite `index.html` diretamente. O HTML e semantico e bem organizado, nao deve ser dificil achar o que mudar.
 
----
+**Cores e estilo:** todas as variaveis de design ficam no inicio do `style.css` dentro de `:root`. Mudar a paleta inteira e uma questao de alterar meia duzia de valores la.
 
-## ✦ Contato
+**Animacoes e logica:** o `script.js` e dividido em blocos por funcionalidade (boot, tema, nav, reveal, rotator, counters, player). Cada bloco e independente e facil de isolar.
 
-- 🌐 [josebraz.cc](https://josebraz.cc)
-- 💼 [LinkedIn](https://www.linkedin.com/in/jos%C3%A9-braz-9842023a8/)
-- 🐙 [GitHub](https://github.com/pixelbarz)
-- 🟣 [Twitch](https://www.twitch.tv/pixelbarz)
+**Musica:** substitua `persona.mp3` por qualquer arquivo `.mp3` e `persona.png` pela capa correspondente.
 
 ---
 
-<div align="center">
+## Deploy
 
-feito com 💜 por **[@pixelbarz](https://github.com/pixelbarz)** · Brasil · 2026
+O site e hospedado via GitHub Pages com dominio customizado configurado no arquivo `CNAME`.
 
-</div>
+Qualquer push na branch `main` atualiza o site automaticamente. Simples assim.
+
+---
+
+## Autor
+
+Jose Braz — front-end em evolucao, designer nas horas vagas.
+
+- [LinkedIn](https://www.linkedin.com/in/jos%C3%A9-braz-9842023a8/)
+- [GitHub](https://github.com/pixelbarz)
+- [Links](https://pixelbarz.github.io/linksdobarz/)
