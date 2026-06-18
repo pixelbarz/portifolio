@@ -1,254 +1,311 @@
-const menuToggle    = document.getElementById("menuToggle");
-const navLinks      = document.getElementById("navLinks");
-const navAnchors    = document.querySelectorAll(".nav-links a");
-const themeToggle   = document.getElementById("themeToggle");
-const themeIcon     = document.getElementById("themeIcon");
-const root          = document.documentElement;
-const revealEls     = document.querySelectorAll(".reveal");
-const sections      = document.querySelectorAll("main section[id]");
-const rotator       = document.getElementById("rotatingHeadline");
-const counters      = document.querySelectorAll(".counter");
-const scrollBar     = document.getElementById("scrollProgress");
-const glowCards     = document.querySelectorAll(".card-glow");
+const $ = (sel, ctx) => (ctx || document).querySelector(sel);
+const $$ = (sel, ctx) => [...(ctx || document).querySelectorAll(sel)];
 
-const reducedMotion  = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const canHover       = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-const isMobile       = window.matchMedia("(max-width: 980px)").matches;
+const root         = document.documentElement;
+const bootScreen   = $('#bootScreen');
+const bootPct      = $('#bootPct');
+const scrollBar    = $('#scrollProgress');
+const menuToggle   = $('#menuToggle');
+const navLinks     = $('#navLinks');
+const navAnchors   = $$('.nav-links a');
+const themeToggle  = $('#themeToggle');
+const themeIcon    = $('#themeIcon');
+const revealEls    = $$('.reveal');
+const sections     = $$('main section[id]');
+const rotator      = $('#rotatingHeadline');
+const counters     = $$('.counter');
+const vpPlayBtn    = $('#vpPlayBtn');
+const vpIcon       = $('#vpIcon');
+const bgAudio      = $('#bgAudio');
+const vinylDisc    = $('#vinylDisc');
+const vinylNeedle  = $('#vinylNeedle');
+const vpToggleBtn  = $('#vpToggleBtn');
+const vpBody       = $('#vpBody');
+const statFills    = $$('.pc-stat-fill');
 
-const bootScreen     = document.getElementById("bootScreen");
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isMobile      = () => window.innerWidth <= 880;
 
+function setTheme(theme) {
+  root.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+  if (themeIcon) themeIcon.textContent = theme === 'dark' ? '☀' : '☾';
+}
 
-// ── BOOT SCREEN ──
+const savedTheme = localStorage.getItem('theme');
+setTheme(savedTheme === 'light' ? 'light' : 'dark');
+
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+}
+
 if (bootScreen) {
   if (reducedMotion) {
-    bootScreen.style.display = "none";
+    bootScreen.style.display = 'none';
   } else {
-    setTimeout(() => { bootScreen.classList.add("done"); }, 2600);
+    let pct = 0;
+    const pctInterval = setInterval(() => {
+      pct = Math.min(pct + Math.random() * 8 + 2, 100);
+      if (bootPct) bootPct.textContent = Math.floor(pct) + '%';
+      if (pct >= 100) clearInterval(pctInterval);
+    }, 80);
+
+    setTimeout(() => {
+      bootScreen.classList.add('done');
+    }, 2800);
   }
 }
 
-
 if (menuToggle && navLinks) {
-  menuToggle.addEventListener("click", () => {
-    const open = navLinks.classList.toggle("open");
-    menuToggle.setAttribute("aria-expanded", String(open));
+  menuToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(open));
   });
-  document.addEventListener("click", (e) => {
+
+  document.addEventListener('click', (e) => {
     if (navLinks.contains(e.target) || menuToggle.contains(e.target)) return;
-    navLinks.classList.remove("open");
-    menuToggle.setAttribute("aria-expanded", "false");
+    navLinks.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
   });
 }
 
 navAnchors.forEach((a) => {
-  a.addEventListener("click", () => {
-    navLinks && navLinks.classList.remove("open");
-    menuToggle && menuToggle.setAttribute("aria-expanded", "false");
+  a.addEventListener('click', () => {
+    navLinks && navLinks.classList.remove('open');
+    menuToggle && menuToggle.setAttribute('aria-expanded', 'false');
   });
 });
 
+let sectionBounds = [];
 
-function setTheme(theme) {
-  root.setAttribute("data-theme", theme);
-  localStorage.setItem("theme", theme);
-  if (themeIcon) themeIcon.textContent = theme === "dark" ? "☀" : "☾";
-}
-
-const saved = localStorage.getItem("theme");
-if (saved === "dark" || saved === "light") {
-  setTheme(saved);
-} else {
-  setTheme("dark"); 
-}
-
-themeToggle && themeToggle.addEventListener("click", () => {
-  setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
-});
-
-
-revealEls.forEach((el, i) => el.style.setProperty("--delay", `${i * 70}ms`));
-
-if (reducedMotion) {
-  revealEls.forEach((el) => el.classList.add("visible"));
-} else {
-  const obs = new IntersectionObserver((entries, o) => {
-    entries.forEach((e) => {
-      if (!e.isIntersecting) return;
-      e.target.classList.add("visible");
-      o.unobserve(e.target);
-    });
-  }, { threshold: 0.1 });
-  revealEls.forEach((el) => obs.observe(el));
-}
-
-
-let bounds = [];
-
-function refreshBounds() {
-  bounds = Array.from(sections).map((s) => ({
+function refreshSectionBounds() {
+  sectionBounds = sections.map((s) => ({
     id: s.id,
-    top: s.offsetTop,
-    bottom: s.offsetTop + s.offsetHeight,
+    top: s.offsetTop - 140,
+    bottom: s.offsetTop + s.offsetHeight - 140,
   }));
 }
 
-function updateNav() {
-  if (!bounds.length) return;
-  const mark = window.scrollY + 130;
-  let activeId = "";
-  bounds.forEach((b) => { if (mark >= b.top && mark < b.bottom) activeId = b.id; });
+function updateActiveNav() {
+  if (!sectionBounds.length) return;
+  const y = window.scrollY;
+  let activeId = '';
+  sectionBounds.forEach((b) => {
+    if (y >= b.top && y < b.bottom) activeId = b.id;
+  });
   navAnchors.forEach((a) => {
-    const t = a.getAttribute("href")?.replace("#", "");
-    a.classList.toggle("active", t === activeId);
+    const target = a.getAttribute('href')?.replace('#', '');
+    a.classList.toggle('active', target === activeId);
   });
 }
 
-
-function updateProgress() {
+function updateScrollProgress() {
   if (!scrollBar) return;
-  const total = document.documentElement.scrollHeight - window.innerHeight;
-  scrollBar.style.width = total > 0 ? `${Math.min((window.scrollY / total) * 100, 100)}%` : "0%";
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  scrollBar.style.width = max > 0 ? `${Math.min((window.scrollY / max) * 100, 100)}%` : '0%';
 }
 
-let ticking = false;
-window.addEventListener("scroll", () => {
-  if (ticking) return;
-  ticking = true;
+let rafPending = false;
+window.addEventListener('scroll', () => {
+  if (rafPending) return;
+  rafPending = true;
   requestAnimationFrame(() => {
-    updateNav();
-    updateProgress();
-    ticking = false;
+    updateActiveNav();
+    updateScrollProgress();
+    rafPending = false;
   });
 }, { passive: true });
 
-window.addEventListener("resize", () => {
-  refreshBounds();
-  updateNav();
-  updateProgress();
+window.addEventListener('resize', () => {
+  refreshSectionBounds();
+  updateActiveNav();
+  updateScrollProgress();
 }, { passive: true });
 
+revealEls.forEach((el, i) => {
+  el.style.setProperty('--reveal-delay', `${i * 60}ms`);
+});
+
+if (reducedMotion) {
+  revealEls.forEach((el) => el.classList.add('visible'));
+} else {
+  const revealObs = new IntersectionObserver((entries, obs) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    });
+  }, { threshold: 0.08 });
+
+  revealEls.forEach((el) => revealObs.observe(el));
+}
+
+if (statFills.length) {
+  const statObs = new IntersectionObserver((entries, obs) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      const fill = e.target;
+      const w = fill.style.getPropertyValue('--w');
+      fill.style.width = w;
+      obs.unobserve(fill);
+    });
+  }, { threshold: 0.3 });
+
+  statFills.forEach((f) => {
+    f.style.width = '0';
+    statObs.observe(f);
+  });
+}
 
 if (rotator) {
   const phrases = [
-    "boa experiência. :P",
-    "interfaces memoráveis. :D",
-    "presença forte. :O",
+    'boa experiência.',
+    'interfaces memoráveis.',
+    'presença digital.',
   ];
 
   if (reducedMotion) {
     rotator.textContent = phrases[0];
   } else {
     let idx = 0;
-    let isTyping = false;
-    let rotateTimer = null;
+    let running = false;
 
     function typeText(el, text, speed, cb) {
       let i = 0;
-      el.textContent = "";
+      el.textContent = '';
       const tick = () => {
-        if (i >= text.length) { if (cb) cb(); return; }
+        if (i >= text.length) {
+          if (cb) cb();
+          return;
+        }
         el.textContent += text[i++];
         setTimeout(tick, speed);
       };
       tick();
     }
 
-    function deleteText(el, speed, cb) {
-      const txt = el.textContent;
+    function eraseText(el, speed, cb) {
+      let txt = el.textContent;
       let i = txt.length;
       const tick = () => {
-        if (i <= 0) { if (cb) cb(); return; }
+        if (i <= 0) {
+          if (cb) cb();
+          return;
+        }
         el.textContent = txt.slice(0, --i);
         setTimeout(tick, speed);
       };
       tick();
     }
 
-    function startRotate() {
-      if (isTyping) return;
-      isTyping = true;
+    function rotate() {
+      if (running) return;
+      running = true;
       const next = (idx + 1) % phrases.length;
-      deleteText(rotator, 8, () => {
+      eraseText(rotator, 40, () => {
         idx = next;
-        typeText(rotator, phrases[idx], 16, () => {
-          isTyping = false;
-          rotateTimer = setTimeout(startRotate, isMobile ? 4000 : 3000);
+        typeText(rotator, phrases[idx], 50, () => {
+          running = false;
+          setTimeout(rotate, 3500);
         });
       });
     }
 
-    const bootDelay = bootScreen && !reducedMotion ? 3400 : 400;
+    const delay = bootScreen && !reducedMotion ? 3200 : 400;
     setTimeout(() => {
-      typeText(rotator, phrases[0], 18, () => {
-        rotateTimer = setTimeout(startRotate, 3500);
+      typeText(rotator, phrases[0], 55, () => {
+        setTimeout(rotate, 3500);
       });
-    }, bootDelay);
+    }, delay);
   }
 }
-
-
-const animateCounter = (el) => {
-  const target = Number(el.dataset.target || 0);
-  const suffix = el.dataset.suffix || "";
-  const dur = 900;
-  const t0 = performance.now();
-
-  const tick = (now) => {
-    const p = Math.min((now - t0) / dur, 1);
-    const eased = 1 - Math.pow(1 - p, 3);
-    el.textContent = `${Math.round(target * eased)}${suffix}`;
-    if (p < 1) requestAnimationFrame(tick);
-  };
-  requestAnimationFrame(tick);
-};
 
 if (counters.length) {
   if (reducedMotion) {
     counters.forEach((el) => {
-      el.textContent = `${el.dataset.target}${el.dataset.suffix || ""}`;
+      el.textContent = `${el.dataset.target}${el.dataset.suffix || ''}`;
     });
   } else {
-    const cObs = new IntersectionObserver((entries, o) => {
+    const counterObs = new IntersectionObserver((entries, obs) => {
       entries.forEach((e) => {
         if (!e.isIntersecting) return;
-        animateCounter(e.target);
-        o.unobserve(e.target);
+        const el = e.target;
+        const target = Number(el.dataset.target || 0);
+        const suffix = el.dataset.suffix || '';
+        const dur = 900;
+        const t0 = performance.now();
+
+        const tick = (now) => {
+          const p = Math.min((now - t0) / dur, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = `${Math.round(target * eased)}${suffix}`;
+          if (p < 1) requestAnimationFrame(tick);
+        };
+
+        requestAnimationFrame(tick);
+        obs.unobserve(el);
       });
-    }, { threshold: 0.45 });
-    counters.forEach((el) => cObs.observe(el));
+    }, { threshold: 0.4 });
+
+    counters.forEach((el) => counterObs.observe(el));
   }
 }
 
+let isPlaying = false;
 
-if (canHover && !reducedMotion && glowCards.length) {
-  glowCards.forEach((card) => {
-    let tx = 50, ty = 50, cx = 50, cy = 50, frame = 0;
+function setPlayState(playing) {
+  isPlaying = playing;
+  if (vpIcon) vpIcon.textContent = playing ? '⏸' : '▶';
+  if (vinylDisc) vinylDisc.classList.toggle('playing', playing);
+  if (vinylNeedle) vinylNeedle.classList.toggle('playing', playing);
+}
 
-    const animate = () => {
-      cx += (tx - cx) * 0.16;
-      cy += (ty - cy) * 0.16;
-      card.style.setProperty("--glow-x", `${cx.toFixed(2)}%`);
-      card.style.setProperty("--glow-y", `${cy.toFixed(2)}%`);
-      const settled = Math.abs(tx - cx) < 0.08 && Math.abs(ty - cy) < 0.08;
-      frame = settled ? 0 : requestAnimationFrame(animate);
-    };
+if (bgAudio) {
+  bgAudio.volume = 0.4;
 
-    const start = () => { if (!frame) frame = requestAnimationFrame(animate); };
-
-    card.addEventListener("mousemove", (e) => {
-      const r = card.getBoundingClientRect();
-      tx = Math.min(Math.max(((e.clientX - r.left) / r.width) * 100, 0), 100);
-      ty = Math.min(Math.max(((e.clientY - r.top) / r.height) * 100, 0), 100);
-      start();
+  const tryAutoplay = () => {
+    bgAudio.play().then(() => {
+      setPlayState(true);
+    }).catch(() => {
+      setPlayState(false);
     });
+  };
 
-    card.addEventListener("mouseenter", start);
-    card.addEventListener("mouseleave", () => { tx = 50; ty = 50; start(); });
+  document.addEventListener('click', () => {
+    if (!isPlaying && bgAudio.paused) {
+      tryAutoplay();
+    }
+  }, { once: true });
+
+  tryAutoplay();
+}
+
+if (vpPlayBtn && bgAudio) {
+  vpPlayBtn.addEventListener('click', () => {
+    if (bgAudio.paused) {
+      bgAudio.play().then(() => setPlayState(true));
+    } else {
+      bgAudio.pause();
+      setPlayState(false);
+    }
   });
 }
 
+if (vpToggleBtn && vpBody) {
+  vpToggleBtn.addEventListener('click', () => {
+    const collapsed = vpBody.classList.toggle('collapsed');
+    vpToggleBtn.textContent = collapsed ? '+' : '−';
+  });
+}
 
-window.addEventListener("load", () => { refreshBounds(); updateNav(); updateProgress(); }, { once: true });
-refreshBounds();
-updateNav();
-updateProgress();
+window.addEventListener('load', () => {
+  refreshSectionBounds();
+  updateActiveNav();
+  updateScrollProgress();
+}, { once: true });
+
+refreshSectionBounds();
+updateActiveNav();
+updateScrollProgress();

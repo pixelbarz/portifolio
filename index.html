@@ -19,58 +19,79 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+
     <div id="bootScreen" class="boot-screen" aria-hidden="true">
-      <div class="boot-content">
-        <p class="boot-prompt">jose-braz.dev terminal</p>
-        <p class="boot-line">> iniciando...</p>
-        <p class="boot-line boot-delay-1">> carregando portfolio...</p>
-        <p class="boot-line boot-delay-2">> pronto.</p>
-        <div class="boot-bar"><div class="boot-bar-fill"></div></div>
+      <div class="boot-frame">
+        <div class="boot-corner tl"></div>
+        <div class="boot-corner tr"></div>
+        <div class="boot-corner bl"></div>
+        <div class="boot-corner br"></div>
+        <div class="boot-inner">
+          <div class="boot-logo">PIXELBARZ</div>
+          <div class="boot-sub">SYSTEM BOOT v2.0</div>
+          <div class="boot-lines">
+            <p class="boot-line">INITIALIZING CORE MODULES...</p>
+            <p class="boot-line boot-d1">LOADING ASSETS...</p>
+            <p class="boot-line boot-d2">ESTABLISHING CONNECTION...</p>
+            <p class="boot-line boot-d3">READY.</p>
+          </div>
+          <div class="boot-bar-wrap">
+            <div class="boot-bar-label">LOADING</div>
+            <div class="boot-bar">
+              <div class="boot-bar-fill"></div>
+            </div>
+            <div class="boot-bar-pct" id="bootPct">0%</div>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-    <div class="ambient-bg" aria-hidden="true">
-      <span class="ambient-shape a"></span>
-      <span class="ambient-shape b"></span>
-      <span class="ambient-shape c"></span>
-      <span class="ambient-grid"></span>
+    <div class="hud-scanlines" aria-hidden="true"></div>
+    <div class="hud-vignette" aria-hidden="true"></div>
+
+    <div class="ambient-grid" aria-hidden="true"></div>
+
+    <div class="corner-deco tl" aria-hidden="true">
+      <span class="cd-h"></span>
+      <span class="cd-v"></span>
+    </div>
+    <div class="corner-deco br" aria-hidden="true">
+      <span class="cd-h"></span>
+      <span class="cd-v"></span>
     </div>
 
     <header class="header">
       <nav class="navbar container">
-        <a href="#inicio" class="logo">jose-braz<span>.</span>dev</a>
+        <a href="#inicio" class="logo">
+          <span class="logo-bracket">[</span>JOSE-BRAZ<span class="logo-dot">.DEV</span><span class="logo-bracket">]</span>
+        </a>
 
         <ul class="nav-links" id="navLinks">
-          <li><a href="#inicio">inicio</a></li>
-          <li><a href="#sobre">sobre</a></li>
-          <li><a href="#servicos">servicos</a></li>
-          <li><a href="#projetos">projetos</a></li>
-          <li><a href="#contato">contato</a></li>
+          <li><a href="#inicio" data-label="01">INICIO</a></li>
+          <li><a href="#sobre" data-label="02">SOBRE</a></li>
+          <li><a href="#servicos" data-label="03">SERVICOS</a></li>
+          <li><a href="#projetos" data-label="04">PROJETOS</a></li>
+          <li><a href="#contato" data-label="05">CONTATO</a></li>
         </ul>
 
-        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">
-          <span id="themeIcon">☀</span>
-        </button>
-
-        <button
-          class="menu-toggle"
-          id="menuToggle"
-          aria-label="Abrir menu"
-          aria-expanded="false"
-          aria-controls="navLinks"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <div class="nav-actions">
+          <button class="icon-btn" id="themeToggle" aria-label="Alternar tema">
+            <span id="themeIcon">☀</span>
+          </button>
+          <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+            <span class="hamburger">
+              <i></i><i></i><i></i>
+            </span>
+          </button>
+        </div>
       </nav>
     </header>
 
@@ -78,249 +99,345 @@
 
       <section id="inicio" class="hero container reveal">
         <div class="hero-content">
-          <p class="hero-tag">PORTFOLIO · WEB FRONT-END</p>
-          <h1 class="terminal-glow">
-            Design bonito para<br>
-            <span id="rotatingHeadline" class="headline-rotator">boa experiência. :P</span>
-          </h1>
-          <p>Sites fluidos e bonitinhos que funcionam bem :D</p>
 
-          <div class="hero-meta">
-            <span>ui_minimalista</span>
-            <span>design_fluido</span>
-            <span>entrega_boa</span>
+          <div class="hero-eyebrow">
+            <span class="eyebrow-line"></span>
+            <span class="eyebrow-text">PORTFOLIO · WEB FRONT-END · BRASIL</span>
+            <span class="eyebrow-line"></span>
+          </div>
+
+          <h1 class="hero-title">
+            Design bonito para<br>
+            <span id="rotatingHeadline" class="headline-rotator">boa experiência.</span>
+          </h1>
+
+          <p class="hero-desc">Sites fluidos e bonitinhos que funcionam bem em qualquer tela.</p>
+
+          <div class="hero-tags">
+            <span>UI_MINIMALISTA</span>
+            <span>DESIGN_FLUIDO</span>
+            <span>ENTREGA_BOA</span>
           </div>
 
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#projetos">Ver projetos ↓</a>
-            <a class="btn btn-secondary" href="#contato">Falar comigo →</a>
+            <a class="btn btn-primary" href="#projetos">VER PROJETOS</a>
+            <a class="btn btn-secondary" href="#contato">FALAR COMIGO</a>
           </div>
 
-          <div class="hero-trust card-glow">
-            <p>Front-end em evolução, experiência boa e entrega rápida.</p>
-            <ul>
-              <li>Atualizado Abril 2026</li>
-              <li>Brasil</li>
-              <li>Resposta rápida</li>
-            </ul>
+          <div class="hero-hud">
+            <div class="hud-corner tl"></div>
+            <div class="hud-corner tr"></div>
+            <div class="hud-corner bl"></div>
+            <div class="hud-corner br"></div>
+            <div class="hud-row">
+              <span class="hud-label">STATUS</span>
+              <span class="hud-sep">//</span>
+              <span class="hud-val online">ONLINE</span>
+            </div>
+            <div class="hud-row">
+              <span class="hud-label">RESPOSTA</span>
+              <span class="hud-sep">//</span>
+              <span class="hud-val">24H</span>
+            </div>
+            <div class="hud-row">
+              <span class="hud-label">UPDATE</span>
+              <span class="hud-sep">//</span>
+              <span class="hud-val">ABR 2026</span>
+            </div>
           </div>
         </div>
 
-        <aside class="hero-visual" aria-label="Foto e apresentação de José Braz">
-          <div class="profile-card card-glow">
-            <div class="profile-card-chrome">
-              <div class="chrome-dots">
-                <i></i><i></i><i></i>
+        <aside class="hero-visual">
+          <div class="profile-card">
+            <div class="card-corners">
+              <i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i>
+            </div>
+            <div class="pc-header">
+              <div class="pc-dots"><span></span><span></span><span></span></div>
+              <span class="pc-path">$ cat profile.json</span>
+              <span class="pc-badge">ATIVO</span>
+            </div>
+            <div class="pc-photo-wrap">
+              <img class="pc-photo" src="barzpfpwoah.jpg" alt="Foto de perfil de José Braz" />
+              <div class="pc-photo-overlay"></div>
+            </div>
+            <div class="pc-body">
+              <p class="pc-role">// front-end creator</p>
+              <h3 class="pc-name">José Braz</h3>
+              <p class="pc-desc">Sites leves, visual clean e experiência fluida em qualquer tela.</p>
+              <div class="pc-stats">
+                <div class="pc-stat">
+                  <div class="pc-stat-bar">
+                    <div class="pc-stat-fill" style="--w:85%"></div>
+                  </div>
+                  <span>DESIGN</span>
+                  <span class="pc-stat-val">85</span>
+                </div>
+                <div class="pc-stat">
+                  <div class="pc-stat-bar">
+                    <div class="pc-stat-fill" style="--w:78%"></div>
+                  </div>
+                  <span>FRONTEND</span>
+                  <span class="pc-stat-val">78</span>
+                </div>
+                <div class="pc-stat">
+                  <div class="pc-stat-bar">
+                    <div class="pc-stat-fill" style="--w:90%"></div>
+                  </div>
+                  <span>UX/UI</span>
+                  <span class="pc-stat-val">90</span>
+                </div>
               </div>
-              <span>$ cat profile.json</span>
-            </div>
-            <div class="profile-photo-wrap">
-              <img
-                class="profile-photo"
-                src="barzpfpwoah.png"
-                alt="Foto de perfil de José Braz"
-              />
-            </div>
-            <div class="profile-content">
-              <p class="profile-eyebrow">front-end creator</p>
-              <h3>José Braz</h3>
-              <p>Sites leves, visual clean e experiência fluida em qualquer tela.</p>
             </div>
           </div>
 
-          <div class="profile-stats">
-            <article class="card-glow">
-              <strong class="counter" data-target="3" data-suffix="+">0</strong>
-              <span>projetos</span>
-            </article>
-            <article class="card-glow">
-              <strong class="counter" data-target="100" data-suffix="%">0</strong>
-              <span>foco_design</span>
-            </article>
-            <article class="card-glow">
-              <strong class="counter" data-target="24" data-suffix="h">0</strong>
-              <span>resposta</span>
-            </article>
+          <div class="hero-counters">
+            <div class="counter-card">
+              <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
+              <strong class="counter" data-target="3" data-suffix="+">0+</strong>
+              <span>PROJETOS</span>
+            </div>
+            <div class="counter-card">
+              <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
+              <strong class="counter" data-target="100" data-suffix="%">0%</strong>
+              <span>FOCO_DESIGN</span>
+            </div>
+            <div class="counter-card">
+              <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
+              <strong class="counter" data-target="24" data-suffix="h">0h</strong>
+              <span>RESPOSTA</span>
+            </div>
           </div>
         </aside>
       </section>
 
-
       <section id="sobre" class="section container reveal">
         <div class="section-head">
-          <p class="section-kicker">SOBRE</p>
-          <h2 class="section-title">Um pouco do meu trabalho :O</h2>
+          <div class="section-num">02</div>
+          <div class="section-head-text">
+            <p class="section-kicker">SOBRE</p>
+            <h2 class="section-title">Um pouco do meu trabalho</h2>
+          </div>
         </div>
-        <p class="lead">
-          Sou estudante e no tempo livre faço sites bonitinhos e treino o que sei sobre front-end :D
+        <p class="section-lead">
+          Sou estudante e no tempo livre faço sites bonitinhos e treino o que sei sobre front-end.
         </p>
         <div class="about-grid">
-          <article class="about-card card-glow">
+          <article class="about-card">
+            <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
+            <div class="about-icon">01</div>
             <h3>Comunicação boa</h3>
-            <p>Site direto e comunicativo que realmente funciona.</p>
+            <p>Site direto e comunicativo que realmente funciona para o usuário final.</p>
           </article>
-          <article class="about-card card-glow">
+          <article class="about-card">
+            <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
+            <div class="about-icon">02</div>
             <h3>Performance legal</h3>
-            <p>Estrutura que funciona bem sem prejudicar o design.</p>
+            <p>Estrutura que funciona bem sem prejudicar o design visual da página.</p>
           </article>
-          <article class="about-card card-glow">
+          <article class="about-card">
+            <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
+            <div class="about-icon">03</div>
             <h3>Estética simples</h3>
-            <p>Layout moderno com leitura confortável.</p>
+            <p>Layout moderno com leitura confortável e hierarquia visual bem definida.</p>
           </article>
         </div>
       </section>
-
 
       <section id="servicos" class="section container reveal">
         <div class="section-head">
-          <p class="section-kicker">SERVIÇOS</p>
-          <h2 class="section-title">O meu trabalho e serviços</h2>
+          <div class="section-num">03</div>
+          <div class="section-head-text">
+            <p class="section-kicker">SERVIÇOS</p>
+            <h2 class="section-title">O meu trabalho e serviços</h2>
+          </div>
         </div>
         <div class="services-grid">
-          <article class="service-card card-glow">
+          <article class="service-card">
+            <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
+            <div class="svc-tag">SVC_01</div>
             <h3>Landing Page</h3>
-            <p>Página única com design claro e minimalista.</p>
+            <p>Página única com design claro e minimalista focada em conversão.</p>
+            <div class="svc-arrow">→</div>
           </article>
-          <article class="service-card card-glow">
+          <article class="service-card">
+            <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
+            <div class="svc-tag">SVC_02</div>
             <h3>Portfólio Profissional</h3>
-            <p>Site pessoal para destacar projetos, habilidades, etc...</p>
+            <p>Site pessoal para destacar projetos, habilidades e presença online.</p>
+            <div class="svc-arrow">→</div>
           </article>
-          <article class="service-card card-glow">
+          <article class="service-card">
+            <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
+            <div class="svc-tag">SVC_03</div>
             <h3>Refatoração Visual</h3>
-            <p>Melhoria de design, layout e experiência do usuário :P</p>
+            <p>Melhoria de design, layout e experiência do usuário em sites existentes.</p>
+            <div class="svc-arrow">→</div>
           </article>
         </div>
       </section>
 
-
       <section class="section container reveal">
-        <div class="section-head">
-          <p class="section-kicker">RESULTADO</p>
-          <h2 class="section-title">Antes e Depois</h2>
-        </div>
-        <article class="before-after card-glow">
-          <div class="before-after-grid">
-            <div class="compare-card before">
-              <h3>antes :(</h3>
+        <div class="before-after-wrap">
+          <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
+          <div class="ba-header">
+            <p class="section-kicker">RESULTADO</p>
+            <h2 class="section-title">Antes e Depois</h2>
+          </div>
+          <div class="ba-grid">
+            <div class="ba-col before">
+              <div class="ba-label">ANTES</div>
               <ul>
-                <li>Visual feio</li>
+                <li>Visual sem identidade</li>
                 <li>Navegação confusa</li>
                 <li>Conteúdo mal organizado</li>
+                <li>Sem hierarquia visual</li>
               </ul>
             </div>
-            <div class="compare-card after">
-              <h3>depois :O</h3>
+            <div class="ba-divider">
+              <span>VS</span>
+            </div>
+            <div class="ba-col after">
+              <div class="ba-label">DEPOIS</div>
               <ul>
-                <li>Layout minimalista</li>
+                <li>Layout com identidade própria</li>
                 <li>Design simples e moderno</li>
                 <li>Experiência fluida</li>
+                <li>Hierarquia clara</li>
               </ul>
             </div>
           </div>
-        </article>
+        </div>
       </section>
 
       <section id="projetos" class="section container reveal">
         <div class="section-head">
-          <p class="section-kicker">PORTFÓLIO</p>
-          <h2 class="section-title">Meus projetos :D</h2>
+          <div class="section-num">04</div>
+          <div class="section-head-text">
+            <p class="section-kicker">PORTFÓLIO</p>
+            <h2 class="section-title">Meus projetos</h2>
+          </div>
         </div>
         <div class="projects-grid">
-          <article class="project-card card-glow">
-            <div class="project-card-chrome">
-              <div class="chrome-dots"><i></i><i></i><i></i></div>
-              <span>casa-trigo-zero/index.html</span>
+          <article class="project-card">
+            <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
+            <div class="proj-header">
+              <div class="proj-dots"><span></span><span></span><span></span></div>
+              <span class="proj-path">casa-trigo-zero/index.html</span>
             </div>
-            <div class="project-image">
+            <div class="proj-image">
               <img src="fachada.png" alt="Projeto Casa Trigo Zero" loading="lazy" />
+              <div class="proj-overlay">
+                <a class="btn btn-primary" href="https://pixelbarz.github.io/casatrigozero/" target="_blank" rel="noopener noreferrer">ABRIR PROJETO →</a>
+              </div>
             </div>
-            <div class="project-content">
-              <span class="project-badge">cliente real</span>
+            <div class="proj-body">
+              <div class="proj-badge">CLIENTE REAL</div>
               <h3>Casa Trigo Zero</h3>
-              <p>Landing page confortável e bonita para boa navegação! :D</p>
-              <br>
-              <a
-                class="btn btn-primary"
-                href="https://pixelbarz.github.io/casatrigozero/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >Ver projeto ↗</a>
+              <p>Landing page confortável e bonita para boa navegação e conversão.</p>
             </div>
           </article>
 
-          <article class="project-card card-glow">
-            <div class="project-card-chrome">
-              <div class="chrome-dots"><i></i><i></i><i></i></div>
-              <span>portfolio/index.html</span>
+          <article class="project-card">
+            <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
+            <div class="proj-header">
+              <div class="proj-dots"><span></span><span></span><span></span></div>
+              <span class="proj-path">portfolio/index.html</span>
             </div>
-            <div class="project-image">
+            <div class="proj-image">
               <img src="links.png" alt="Meu portfólio" loading="lazy" />
+              <div class="proj-overlay">
+                <a class="btn btn-primary" href="#inicio">VER PROJETO →</a>
+              </div>
             </div>
-            <div class="project-content">
-              <span class="project-badge">autoral</span>
-              <h3>Meu Portfólio :D</h3>
-              <p>Estrutura bem feita, site fluido e design moderno.</p>
-              <br>
-              <a class="btn btn-primary" href="#inicio">Ver projeto ↗</a>
+            <div class="proj-body">
+              <div class="proj-badge">AUTORAL</div>
+              <h3>Meu Portfólio</h3>
+              <p>Estrutura bem feita, site fluido e design moderno com personalidade.</p>
             </div>
           </article>
         </div>
       </section>
 
       <section id="contato" class="section container reveal">
-        <div class="contact-panel card-glow">
-          <div class="section-head compact">
-            <p class="section-kicker">CONTATO</p>
-            <h2 class="section-title">Onde falar comigo???</h2>
+        <div class="contact-panel">
+          <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
+          <div class="contact-head">
+            <div class="section-num">05</div>
+            <div>
+              <p class="section-kicker">CONTATO</p>
+              <h2 class="section-title">Onde falar comigo</h2>
+            </div>
           </div>
-          <p>Se você quer um site mais bonito e leve, me chama nos canais abaixo. ;)</p>
-          <div class="quick-contact-grid">
-            <a
-              class="quick-contact-card card-glow"
-              href="https://www.linkedin.com/in/jos%C3%A9-braz-9842023a8/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+          <p class="contact-desc">Se você quer um site mais bonito e leve, me chama nos canais abaixo.</p>
+          <div class="contact-grid">
+            <a class="contact-card" href="https://www.linkedin.com/in/jos%C3%A9-braz-9842023a8/" target="_blank" rel="noopener noreferrer">
+              <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
+              <div class="contact-card-num">LN</div>
               <h3>LinkedIn</h3>
               <p>// contato profissional</p>
-              <span class="quick-arrow" aria-hidden="true">↗</span>
+              <span class="contact-arrow">↗</span>
             </a>
-            <a
-              class="quick-contact-card card-glow"
-              href="https://github.com/pixelbarz"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a class="contact-card" href="https://github.com/pixelbarz" target="_blank" rel="noopener noreferrer">
+              <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
+              <div class="contact-card-num">GH</div>
               <h3>GitHub</h3>
               <p>// repositórios e código</p>
-              <span class="quick-arrow" aria-hidden="true">↗</span>
+              <span class="contact-arrow">↗</span>
             </a>
-            <a
-              class="quick-contact-card card-glow"
-              href="https://pixelbarz.github.io/linksdobarz/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a class="contact-card" href="https://pixelbarz.github.io/linksdobarz/" target="_blank" rel="noopener noreferrer">
+              <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
+              <div class="contact-card-num">LK</div>
               <h3>Meus Links</h3>
               <p>// tudo num lugar</p>
-              <span class="quick-arrow" aria-hidden="true">↗</span>
+              <span class="contact-arrow">↗</span>
             </a>
           </div>
         </div>
       </section>
+
     </main>
 
     <footer class="footer">
-      <div class="container footer-content">
-        <div class="footer-bio">
-          <p class="footer-name">José Braz</p>
-          <p>Front-end em evolução · Designer nas horas vagas :P</p>
+      <div class="container footer-inner">
+        <div class="footer-left">
+          <p class="footer-name">JOSÉ BRAZ <span>· PIXELBARZ</span></p>
+          <p class="footer-sub">Front-end em evolução · Designer nas horas vagas</p>
         </div>
-        <div class="footer-meta">
-          <p>Brasil · Abril 2026</p>
+        <div class="footer-right">
+          <span class="footer-status"></span>
+          <span>BRASIL · ABR 2026</span>
         </div>
       </div>
     </footer>
+
+    <div class="vinyl-player" id="vinylPlayer" aria-label="Player de música">
+      <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
+      <div class="vp-header">
+        <span class="vp-label">NOW PLAYING</span>
+        <button class="vp-toggle-btn" id="vpToggleBtn" aria-label="Minimizar player">−</button>
+      </div>
+      <div class="vp-body" id="vpBody">
+        <div class="vinyl-wrap" id="vinylWrap">
+          <div class="vinyl-disc" id="vinylDisc">
+            <div class="vinyl-grooves"></div>
+            <div class="vinyl-center">
+              <img src="persona.jpg" alt="Album art" class="vinyl-art" id="vinylArt" />
+            </div>
+            <div class="vinyl-shine"></div>
+          </div>
+          <div class="vinyl-needle" id="vinylNeedle"></div>
+        </div>
+        <div class="vp-info">
+          <p class="vp-track">Musiquinha :D</p>
+          <p class="vp-artist">josebraz.cc</p>
+        </div>
+        <button class="vp-btn" id="vpPlayBtn" aria-label="Play/Pause">
+          <span id="vpIcon">▶</span>
+        </button>
+      </div>
+      <audio id="bgAudio" src="persona.mp3" loop preload="auto"></audio>
+    </div>
 
     <script src="script.js"></script>
   </body>
