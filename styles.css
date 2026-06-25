@@ -1481,17 +1481,14 @@ main {
 
 .vinyl-center {
   position: absolute;
-  inset: 50%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   width: 52px;
   height: 52px;
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid var(--blue);
-  top: 50%;
-  left: 50%;
-  margin-top: -26px;
-  margin-left: -26px;
 }
 
 .vinyl-art {
