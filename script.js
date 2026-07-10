@@ -293,6 +293,23 @@ if (vpPlayBtn && bgAudio) {
   });
 }
 
+if (bgAudio) {
+  let wasPlayingBeforeHide = false;
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      wasPlayingBeforeHide = isPlaying;
+      if (isPlaying) {
+        bgAudio.pause();
+        setPlayState(false);
+      }
+    } else if (wasPlayingBeforeHide) {
+      bgAudio.play().then(() => setPlayState(true)).catch(() => setPlayState(false));
+      wasPlayingBeforeHide = false;
+    }
+  });
+}
+
 if (vpToggleBtn && vpBody) {
   vpToggleBtn.addEventListener('click', () => {
     const collapsed = vpBody.classList.toggle('collapsed');
