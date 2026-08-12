@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:ital,wght@0,500;0,700;0,900;1,700;1,900&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@500;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
@@ -27,22 +27,26 @@
   <body>
 
     <div id="bootScreen" class="boot-screen" aria-hidden="true">
+      <div class="boot-ripples" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
       <div class="boot-frame">
         <div class="boot-corner tl"></div>
         <div class="boot-corner tr"></div>
         <div class="boot-corner bl"></div>
         <div class="boot-corner br"></div>
         <div class="boot-inner">
+          <div class="boot-jp">起動シーケンス</div>
           <div class="boot-logo">PIXELBARZ</div>
-          <div class="boot-sub">SYSTEM BOOT v2.0</div>
+          <div class="boot-sub">ACESSANDO O NÚCLEO — v3.RELOAD</div>
           <div class="boot-lines">
-            <p class="boot-line">INITIALIZING CORE MODULES...</p>
-            <p class="boot-line boot-d1">LOADING ASSETS...</p>
-            <p class="boot-line boot-d2">ESTABLISHING CONNECTION...</p>
-            <p class="boot-line boot-d3">READY.</p>
+            <p class="boot-line">SINCRONIZANDO MÓDULOS...</p>
+            <p class="boot-line boot-d1">CARREGANDO ATIVOS...</p>
+            <p class="boot-line boot-d2">ESTABELECENDO CONEXÃO...</p>
+            <p class="boot-line boot-d3">PRONTO.</p>
           </div>
           <div class="boot-bar-wrap">
-            <div class="boot-bar-label">LOADING</div>
+            <div class="boot-bar-label">CARREGANDO</div>
             <div class="boot-bar">
               <div class="boot-bar-fill"></div>
             </div>
@@ -59,6 +63,11 @@
 
     <div class="ambient-grid" aria-hidden="true"></div>
 
+    <div class="ocean-bubbles" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
     <div class="corner-deco tl" aria-hidden="true">
       <span class="cd-h"></span>
       <span class="cd-v"></span>
@@ -71,13 +80,13 @@
     <header class="header">
       <nav class="navbar container">
         <a href="#inicio" class="logo">
-          <span class="logo-bracket">[</span>BARZ<span class="logo-dot">.DEV</span><span class="logo-bracket">]</span>
+          <span class="logo-bracket">[</span>PixelBarz</span><span class="logo-bracket">]</span>
         </a>
 
         <ul class="nav-links" id="navLinks">
-          <li><a href="#inicio" data-label="01">INICIO</a></li>
+          <li><a href="#inicio" data-label="01">INÍCIO</a></li>
           <li><a href="#sobre" data-label="02">SOBRE</a></li>
-          <li><a href="#servicos" data-label="03">SERVICOS</a></li>
+          <li><a href="#servicos" data-label="03">SERVIÇOS</a></li>
           <li><a href="#projetos" data-label="04">PROJETOS</a></li>
           <li><a href="#contato" data-label="05">CONTATO</a></li>
         </ul>
@@ -98,6 +107,11 @@
     <main>
 
       <section id="inicio" class="hero container reveal">
+
+        <div class="hero-jp-strip" aria-hidden="true">
+          <span>設計</span><span>開発</span><span>接続</span><span>設計</span><span>開発</span><span>接続</span>
+        </div>
+
         <div class="hero-content">
 
           <div class="hero-eyebrow">
@@ -107,11 +121,11 @@
           </div>
 
           <h1 class="hero-title">
-            Design bonito para<br>
+            Design bom para uma<br>
             <span id="rotatingHeadline" class="headline-rotator">boa experiência.</span>
           </h1>
 
-          <p class="hero-desc">Sites fluidos e bonitinhos que funcionam bem em qualquer tela.</p>
+          <p class="hero-desc">Sites fluidos e bonitinhos que funcionam bem em qualquer lugar :P</p>
 
           <div class="hero-tags">
             <span>UI_MINIMALISTA</span>
@@ -142,12 +156,19 @@
             <div class="hud-row">
               <span class="hud-label">UPDATE</span>
               <span class="hud-sep">//</span>
-              <span class="hud-val">ABR 2026</span>
+              <span class="hud-val">AGO 2026</span>
             </div>
           </div>
         </div>
 
         <aside class="hero-visual">
+          <div class="menu-ghost" aria-hidden="true">
+            <span>PERFIL</span>
+            <span>HABILIDADES</span>
+            <span>PROJETOS</span>
+            <span>CONTATO</span>
+          </div>
+
           <div class="profile-card">
             <div class="card-corners">
               <i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i>
@@ -158,33 +179,34 @@
               <span class="pc-badge">ATIVO</span>
             </div>
             <div class="pc-photo-wrap">
-              <img class="pc-photo" src="pfp.png" alt="Foto de perfil de José Braz" />
+              <img class="pc-photo" src="fotos/makoto.jpg" alt="Foto de perfil de José Braz" />
               <div class="pc-photo-overlay"></div>
+              <div class="pc-photo-slash" aria-hidden="true"></div>
             </div>
             <div class="pc-body">
               <p class="pc-role">// front-end creator</p>
               <h3 class="pc-name">Barz</h3>
-              <p class="pc-desc">Sites leves, visual clean e experiência fluida em todo lugar.</p>
+              <p class="pc-desc">Sites bem feitos, fluidos e legais :D</p>
               <div class="pc-stats">
                 <div class="pc-stat">
+                  <span>DESIGN</span>
                   <div class="pc-stat-bar">
                     <div class="pc-stat-fill" style="--w:85%"></div>
                   </div>
-                  <span>DESIGN</span>
                   <span class="pc-stat-val">85</span>
                 </div>
                 <div class="pc-stat">
+                  <span>FRONTEND</span>
                   <div class="pc-stat-bar">
                     <div class="pc-stat-fill" style="--w:78%"></div>
                   </div>
-                  <span>FRONTEND</span>
                   <span class="pc-stat-val">78</span>
                 </div>
                 <div class="pc-stat">
+                  <span>UX/UI</span>
                   <div class="pc-stat-bar">
                     <div class="pc-stat-fill" style="--w:90%"></div>
                   </div>
-                  <span>UX/UI</span>
                   <span class="pc-stat-val">90</span>
                 </div>
               </div>
@@ -220,26 +242,26 @@
           </div>
         </div>
         <p class="section-lead">
-          Sou estudante e no tempo livre faço sites bonitinhos e treino o que sei sobre front-end.
+          Sou estudante e no tempo livre uns sites :V
         </p>
         <div class="about-grid">
           <article class="about-card">
             <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
             <div class="about-icon">01</div>
             <h3>Comunicação boa</h3>
-            <p>Site direto e comunicativo que realmente funciona para o usuário final.</p>
+            <p>Site direto e comunicativo que realmente funciona pra quem usar o site.</p>
           </article>
           <article class="about-card">
             <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
             <div class="about-icon">02</div>
             <h3>Performance legal</h3>
-            <p>Estrutura que funciona bem sem prejudicar o design visual da página.</p>
+            <p>Estrutura que funciona bem sem deixar o design ruim.</p>
           </article>
           <article class="about-card">
             <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
             <div class="about-icon">03</div>
             <h3>Estética simples</h3>
-            <p>Layout moderno com leitura confortável e hierarquia visual bem definida.</p>
+            <p>Layout moderno com leitura boa e bem feita.</p>
           </article>
         </div>
       </section>
@@ -257,21 +279,21 @@
             <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
             <div class="svc-tag">SVC_01</div>
             <h3>Landing Page</h3>
-            <p>Página única com design claro e minimalista focada em conversão.</p>
+            <p>Página única com design bom e minimalista.</p>
             <div class="svc-arrow">→</div>
           </article>
           <article class="service-card">
             <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
             <div class="svc-tag">SVC_02</div>
             <h3>Portfólio Profissional</h3>
-            <p>Site pessoal para destacar projetos, habilidades e presença online.</p>
+            <p>Site pessoal para destacar projetos, habilidades e divulgar trabalho.</p>
             <div class="svc-arrow">→</div>
           </article>
           <article class="service-card">
             <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
             <div class="svc-tag">SVC_03</div>
             <h3>Refatoração Visual</h3>
-            <p>Melhoria de design, layout e experiência do usuário em sites existentes.</p>
+            <p>Melhoria de design, layout e experiência do usuário em sites que já existem.</p>
             <div class="svc-arrow">→</div>
           </article>
         </div>
@@ -288,10 +310,10 @@
             <div class="ba-col before">
               <div class="ba-label">ANTES</div>
               <ul>
-                <li>Visual sem identidade</li>
+                <li>Visual mal feito</li>
                 <li>Navegação confusa</li>
                 <li>Conteúdo mal organizado</li>
-                <li>Sem hierarquia visual</li>
+                <li>Tudo desorganizado</li>
               </ul>
             </div>
             <div class="ba-divider">
@@ -300,10 +322,10 @@
             <div class="ba-col after">
               <div class="ba-label">DEPOIS</div>
               <ul>
-                <li>Layout com identidade própria</li>
+                <li>Estrutura organizada</li>
                 <li>Design simples e moderno</li>
-                <li>Experiência fluida</li>
-                <li>Hierarquia clara</li>
+                <li>Uso fluido</li>
+                <li>Layout Fofinho :3</li>
               </ul>
             </div>
           </div>
@@ -324,9 +346,10 @@
             <div class="proj-header">
               <div class="proj-dots"><span></span><span></span><span></span></div>
               <span class="proj-path">casa-trigo-zero/index.html</span>
+              <span class="proj-rank">RANK S</span>
             </div>
             <div class="proj-image">
-              <img src="casatrigozero.jpeg" alt="Projeto Casa Trigo Zero" loading="lazy" />
+              <img src="fotos/casatrigozero.jpeg" alt="Projeto Casa Trigo Zero" loading="lazy" />
               <div class="proj-overlay">
                 <a class="btn btn-primary" href="https://pixelbarz.github.io/casatrigozero/" target="_blank" rel="noopener noreferrer">ABRIR PROJETO →</a>
               </div>
@@ -334,7 +357,7 @@
             <div class="proj-body">
               <div class="proj-badge">CLIENTE REAL</div>
               <h3>Casa Trigo Zero</h3>
-              <p>Landing page confortável e bonita para boa navegação.</p>
+              <p>Landing page confortável e bonita para quem visitar.</p>
             </div>
           </article>
 
@@ -343,17 +366,18 @@
             <div class="proj-header">
               <div class="proj-dots"><span></span><span></span><span></span></div>
               <span class="proj-path">links/index.html</span>
+              <span class="proj-rank">RANK A</span>
             </div>
             <div class="proj-image">
-              <img src="links.png" alt="Meus Links" loading="lazy" />
+              <img src="fotos/links.png" alt="Meus Links" loading="lazy" />
               <div class="proj-overlay">
                 <a class="btn btn-primary" href="https://pixelbarz.github.io/linksdobarz/">VER PROJETO →</a>
               </div>
             </div>
             <div class="proj-body">
               <div class="proj-badge">AUTORAL</div>
-              <h3>Minha Pagina de Links</h3>
-              <p>Estrutura bem feita, site fluido e design moderno com personalidade.</p>
+              <h3>Minha Página de Links</h3>
+              <p>Site fluido e design moderno pros meus links >.< </p>
             </div>
           </article>
 
@@ -362,9 +386,10 @@
             <div class="proj-header">
               <div class="proj-dots"><span></span><span></span><span></span></div>
               <span class="proj-path">biocalculadora/index.html</span>
+              <span class="proj-rank">RANK A</span>
             </div>
             <div class="proj-image">
-              <img src="bio.png" alt="biocalculadora" loading="lazy" />
+              <img src="fotos/bio.png" alt="biocalculadora" loading="lazy" />
               <div class="proj-overlay">
                 <a class="btn btn-primary" href="https://pixelbarz.github.io/biocalculadora/">VER PROJETO →</a>
               </div>
@@ -372,7 +397,27 @@
             <div class="proj-body">
               <div class="proj-badge">AUTORAL</div>
               <h3>Biocalculadora</h3>
-              <p>Plataforma de análise da qualidade do bioetanol com base nas normas ANP e ABNT.</p>
+              <p>Site de análise da qualidade do bioetanol seguindo as normas da ANP e ABNT.</p>
+            </div>
+          </article>
+
+           <article class="project-card">
+            <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
+            <div class="proj-header">
+              <div class="proj-dots"><span></span><span></span><span></span></div>
+              <span class="proj-path">StudyOS/index.html</span>
+              <span class="proj-rank">RANK A</span>
+            </div>
+            <div class="proj-image">
+              <img src="fotos/studyos.png" alt="StudyOS" loading="lazy" />
+              <div class="proj-overlay">
+                <a class="btn btn-primary" href="https://pixelbarz.github.io/studyos/">VER PROJETO →</a>
+              </div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-badge">AUTORAL</div>
+              <h3>StudyOS</h3>
+              <p>Site com planner para estudos em geral.</p>
             </div>
           </article>
         </div>
@@ -408,7 +453,7 @@
               <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
               <div class="contact-card-num">LK</div>
               <h3>Meus Links</h3>
-              <p>// tudo num lugar</p>
+              <p>// tudo num lugar :D</p>
               <span class="contact-arrow">↗</span>
             </a>
           </div>
@@ -425,7 +470,7 @@
         </div>
         <div class="footer-right">
           <span class="footer-status"></span>
-          <span>BRASIL · ABR 2026</span>
+          <span>BRASIL · AGO 2026</span>
         </div>
       </div>
     </footer>
@@ -441,14 +486,14 @@
           <div class="vinyl-disc" id="vinylDisc">
             <div class="vinyl-grooves"></div>
             <div class="vinyl-center">
-              <img src="fmfl.jpg" alt="Album art" class="vinyl-art" id="vinylArt" />
+              <img src="fotos/fmfl.jpg" alt="Album art" class="vinyl-art" id="vinylArt" />
             </div>
             <div class="vinyl-shine"></div>
           </div>
           <div class="vinyl-needle" id="vinylNeedle"></div>
         </div>
         <div class="vp-info">
-          <p class="vp-track">Musiquinha :D</p>
+          <p class="vp-track">Musica</p>
           <p class="vp-artist">josebraz.cc</p>
         </div>
         <button class="vp-btn" id="vpPlayBtn" aria-label="Play/Pause">

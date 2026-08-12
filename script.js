@@ -162,7 +162,7 @@ if (statFills.length) {
 if (rotator) {
   const phrases = [
     'boa experiência.',
-    'interfaces memoráveis.',
+    'interface bonita.',
     'presença digital.',
   ];
 
