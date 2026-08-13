@@ -27,9 +27,6 @@
   <body>
 
     <div id="bootScreen" class="boot-screen" aria-hidden="true">
-      <div class="boot-ripples" aria-hidden="true">
-        <span></span><span></span><span></span>
-      </div>
       <div class="boot-frame">
         <div class="boot-corner tl"></div>
         <div class="boot-corner tr"></div>
@@ -38,15 +35,7 @@
         <div class="boot-inner">
           <div class="boot-jp">起動シーケンス</div>
           <div class="boot-logo">PIXELBARZ</div>
-          <div class="boot-sub">ACESSANDO O NÚCLEO — v3.RELOAD</div>
-          <div class="boot-lines">
-            <p class="boot-line">SINCRONIZANDO MÓDULOS...</p>
-            <p class="boot-line boot-d1">CARREGANDO ATIVOS...</p>
-            <p class="boot-line boot-d2">ESTABELECENDO CONEXÃO...</p>
-            <p class="boot-line boot-d3">PRONTO.</p>
-          </div>
           <div class="boot-bar-wrap">
-            <div class="boot-bar-label">CARREGANDO</div>
             <div class="boot-bar">
               <div class="boot-bar-fill"></div>
             </div>
@@ -57,30 +46,12 @@
     </div>
 
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-
     <div class="hud-scanlines" aria-hidden="true"></div>
-    <div class="hud-vignette" aria-hidden="true"></div>
-
-    <div class="ambient-grid" aria-hidden="true"></div>
-
-    <div class="ocean-bubbles" aria-hidden="true">
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span>
-    </div>
-
-    <div class="corner-deco tl" aria-hidden="true">
-      <span class="cd-h"></span>
-      <span class="cd-v"></span>
-    </div>
-    <div class="corner-deco br" aria-hidden="true">
-      <span class="cd-h"></span>
-      <span class="cd-v"></span>
-    </div>
 
     <header class="header">
       <nav class="navbar container">
         <a href="#inicio" class="logo">
-          <span class="logo-bracket">[</span>PixelBarz</span><span class="logo-bracket">]</span>
+          <span class="logo-bracket">[</span>PixelBarz<span class="logo-bracket">]</span>
         </a>
 
         <ul class="nav-links" id="navLinks">
@@ -96,9 +67,7 @@
             <span id="themeIcon">☀</span>
           </button>
           <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
-            <span class="hamburger">
-              <i></i><i></i><i></i>
-            </span>
+            <span class="hamburger"><i></i><i></i><i></i></span>
           </button>
         </div>
       </nav>
@@ -107,72 +76,36 @@
     <main>
 
       <section id="inicio" class="hero container reveal">
-
-        <div class="hero-jp-strip" aria-hidden="true">
-          <span>設計</span><span>開発</span><span>接続</span><span>設計</span><span>開発</span><span>接続</span>
-        </div>
-
-        <div class="hero-content">
-
+        <div class="hero-copy">
           <div class="hero-eyebrow">
             <span class="eyebrow-line"></span>
             <span class="eyebrow-text">PORTFOLIO · WEB FRONT-END · BRASIL</span>
-            <span class="eyebrow-line"></span>
           </div>
 
           <h1 class="hero-title">
-            Design bom para uma<br>
+            Design bom pra uma<br>
             <span id="rotatingHeadline" class="headline-rotator">boa experiência.</span>
           </h1>
 
           <p class="hero-desc">Sites fluidos e bonitinhos que funcionam bem em qualquer lugar :P</p>
-
-          <div class="hero-tags">
-            <span>UI_MINIMALISTA</span>
-            <span>DESIGN_FLUIDO</span>
-            <span>ENTREGA_BOA</span>
-          </div>
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="#projetos">VER PROJETOS</a>
             <a class="btn btn-secondary" href="#contato">FALAR COMIGO</a>
           </div>
 
-          <div class="hero-hud">
-            <div class="hud-corner tl"></div>
-            <div class="hud-corner tr"></div>
-            <div class="hud-corner bl"></div>
-            <div class="hud-corner br"></div>
-            <div class="hud-row">
-              <span class="hud-label">STATUS</span>
-              <span class="hud-sep">//</span>
-              <span class="hud-val online">ONLINE</span>
-            </div>
-            <div class="hud-row">
-              <span class="hud-label">RESPOSTA</span>
-              <span class="hud-sep">//</span>
-              <span class="hud-val">24H</span>
-            </div>
-            <div class="hud-row">
-              <span class="hud-label">UPDATE</span>
-              <span class="hud-sep">//</span>
-              <span class="hud-val">AGO 2026</span>
-            </div>
-          </div>
+          <p class="hero-ticker">
+            <span class="hud-val online">ONLINE</span>
+            <span class="hud-sep">//</span>
+            RESPOSTA EM 24H
+            <span class="hud-sep">//</span>
+            ATUALIZADO AGO 2026
+          </p>
         </div>
 
         <aside class="hero-visual">
-          <div class="menu-ghost" aria-hidden="true">
-            <span>PERFIL</span>
-            <span>HABILIDADES</span>
-            <span>PROJETOS</span>
-            <span>CONTATO</span>
-          </div>
-
           <div class="profile-card">
-            <div class="card-corners">
-              <i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i>
-            </div>
+            <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
             <div class="pc-header">
               <div class="pc-dots"><span></span><span></span><span></span></div>
               <span class="pc-path">$ cat profile.json</span>
@@ -181,7 +114,6 @@
             <div class="pc-photo-wrap">
               <img class="pc-photo" src="fotos/makoto.jpg" alt="Foto de perfil de José Braz" />
               <div class="pc-photo-overlay"></div>
-              <div class="pc-photo-slash" aria-hidden="true"></div>
             </div>
             <div class="pc-body">
               <p class="pc-role">// front-end creator</p>
@@ -190,44 +122,15 @@
               <div class="pc-stats">
                 <div class="pc-stat">
                   <span>DESIGN</span>
-                  <div class="pc-stat-bar">
-                    <div class="pc-stat-fill" style="--w:85%"></div>
-                  </div>
+                  <div class="pc-stat-bar"><div class="pc-stat-fill" style="--w:85%"></div></div>
                   <span class="pc-stat-val">85</span>
                 </div>
                 <div class="pc-stat">
-                  <span>FRONTEND</span>
-                  <div class="pc-stat-bar">
-                    <div class="pc-stat-fill" style="--w:78%"></div>
-                  </div>
-                  <span class="pc-stat-val">78</span>
-                </div>
-                <div class="pc-stat">
                   <span>UX/UI</span>
-                  <div class="pc-stat-bar">
-                    <div class="pc-stat-fill" style="--w:90%"></div>
-                  </div>
+                  <div class="pc-stat-bar"><div class="pc-stat-fill" style="--w:90%"></div></div>
                   <span class="pc-stat-val">90</span>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div class="hero-counters">
-            <div class="counter-card">
-              <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
-              <strong class="counter" data-target="3" data-suffix="+">0+</strong>
-              <span>PROJETOS</span>
-            </div>
-            <div class="counter-card">
-              <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
-              <strong class="counter" data-target="100" data-suffix="%">0%</strong>
-              <span>FOCO_DESIGN</span>
-            </div>
-            <div class="counter-card">
-              <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
-              <strong class="counter" data-target="24" data-suffix="h">0h</strong>
-              <span>RESPOSTA</span>
             </div>
           </div>
         </aside>
@@ -241,28 +144,27 @@
             <h2 class="section-title">Um pouco do meu trabalho</h2>
           </div>
         </div>
-        <p class="section-lead">
-          Sou estudante e no tempo livre uns sites :V
-        </p>
+
         <div class="about-grid">
-          <article class="about-card">
-            <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
-            <div class="about-icon">01</div>
-            <h3>Comunicação boa</h3>
-            <p>Site direto e comunicativo que realmente funciona pra quem usar o site.</p>
-          </article>
-          <article class="about-card">
-            <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
-            <div class="about-icon">02</div>
-            <h3>Performance legal</h3>
-            <p>Estrutura que funciona bem sem deixar o design ruim.</p>
-          </article>
-          <article class="about-card">
-            <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
-            <div class="about-icon">03</div>
-            <h3>Estética simples</h3>
-            <p>Layout moderno com leitura boa e bem feita.</p>
-          </article>
+          <p class="about-lead">
+            Sou estudante e no tempo livre faço uns sites. Nerdola e fã de qualquer coisa que envolva tecnologia. eba
+          </p>
+          <ul class="about-points">
+            <li><span class="ap-num">01</span> Estrutura boa e bem feita (eu acho)</li>
+            <li><span class="ap-num">02</span> Performance boa sem deixar o site feio (tipo o gov)</li>
+            <li><span class="ap-num">03</span> Estética simples que funciona bem.</li>
+          </ul>
+        </div>
+
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee-track">
+            <span>HTML</span><span>·</span><span>CSS</span><span>·</span><span>JAVASCRIPT</span><span>·</span>
+            <span>UI/UX</span><span>·</span><span>ANIMAÇÃO</span><span>·</span><span>GITHUB PAGES</span><span>·</span>
+            <span>DESIGN FLUIDO</span><span>·</span>
+            <span>HTML</span><span>·</span><span>CSS</span><span>·</span><span>JAVASCRIPT</span><span>·</span>
+            <span>UI/UX</span><span>·</span><span>ANIMAÇÃO</span><span>·</span><span>GITHUB PAGES</span><span>·</span>
+            <span>DESIGN FLUIDO</span><span>·</span>
+          </div>
         </div>
       </section>
 
@@ -271,63 +173,28 @@
           <div class="section-num">03</div>
           <div class="section-head-text">
             <p class="section-kicker">SERVIÇOS</p>
-            <h2 class="section-title">O meu trabalho e serviços</h2>
+            <h2 class="section-title">O que eu faço</h2>
           </div>
         </div>
-        <div class="services-grid">
-          <article class="service-card">
-            <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
-            <div class="svc-tag">SVC_01</div>
-            <h3>Landing Page</h3>
-            <p>Página única com design bom e minimalista.</p>
-            <div class="svc-arrow">→</div>
-          </article>
-          <article class="service-card">
-            <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
-            <div class="svc-tag">SVC_02</div>
-            <h3>Portfólio Profissional</h3>
-            <p>Site pessoal para destacar projetos, habilidades e divulgar trabalho.</p>
-            <div class="svc-arrow">→</div>
-          </article>
-          <article class="service-card">
-            <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
-            <div class="svc-tag">SVC_03</div>
-            <h3>Refatoração Visual</h3>
-            <p>Melhoria de design, layout e experiência do usuário em sites que já existem.</p>
-            <div class="svc-arrow">→</div>
-          </article>
-        </div>
-      </section>
 
-      <section class="section container reveal">
-        <div class="before-after-wrap">
-          <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
-          <div class="ba-header">
-            <p class="section-kicker">RESULTADO</p>
-            <h2 class="section-title">Antes e Depois</h2>
+        <div class="services-list">
+          <div class="service-row">
+            <span class="sr-idx">01</span>
+            <h3 class="sr-title">Landing Page</h3>
+            <p class="sr-desc">Página única com design bom e minimalista.</p>
+            <span class="sr-arrow">→</span>
           </div>
-          <div class="ba-grid">
-            <div class="ba-col before">
-              <div class="ba-label">ANTES</div>
-              <ul>
-                <li>Visual mal feito</li>
-                <li>Navegação confusa</li>
-                <li>Conteúdo mal organizado</li>
-                <li>Tudo desorganizado</li>
-              </ul>
-            </div>
-            <div class="ba-divider">
-              <span>VS</span>
-            </div>
-            <div class="ba-col after">
-              <div class="ba-label">DEPOIS</div>
-              <ul>
-                <li>Estrutura organizada</li>
-                <li>Design simples e moderno</li>
-                <li>Uso fluido</li>
-                <li>Layout Fofinho :3</li>
-              </ul>
-            </div>
+          <div class="service-row">
+            <span class="sr-idx">02</span>
+            <h3 class="sr-title">Portfólio Profissional</h3>
+            <p class="sr-desc">Site pessoal pra destacar projetos, habilidades e divulgar o trabalho.</p>
+            <span class="sr-arrow">→</span>
+          </div>
+          <div class="service-row">
+            <span class="sr-idx">03</span>
+            <h3 class="sr-title">Refatoração Visual</h3>
+            <p class="sr-desc">Melhoria de design, layout e experiência em sites que já existem.</p>
+            <span class="sr-arrow">→</span>
           </div>
         </div>
       </section>
@@ -340,123 +207,104 @@
             <h2 class="section-title">Meus projetos</h2>
           </div>
         </div>
-        <div class="projects-grid">
-          <article class="project-card">
-            <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
-            <div class="proj-header">
-              <div class="proj-dots"><span></span><span></span><span></span></div>
-              <span class="proj-path">casa-trigo-zero/index.html</span>
-              <span class="proj-rank">RANK S</span>
-            </div>
-            <div class="proj-image">
-              <img src="fotos/casatrigozero.jpeg" alt="Projeto Casa Trigo Zero" loading="lazy" />
-              <div class="proj-overlay">
-                <a class="btn btn-primary" href="https://pixelbarz.github.io/casatrigozero/" target="_blank" rel="noopener noreferrer">ABRIR PROJETO →</a>
-              </div>
-            </div>
-            <div class="proj-body">
-              <div class="proj-badge">CLIENTE REAL</div>
-              <h3>Casa Trigo Zero</h3>
-              <p>Landing page confortável e bonita para quem visitar.</p>
-            </div>
-          </article>
 
-          <article class="project-card">
-            <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
-            <div class="proj-header">
-              <div class="proj-dots"><span></span><span></span><span></span></div>
-              <span class="proj-path">links/index.html</span>
-              <span class="proj-rank">RANK A</span>
-            </div>
-            <div class="proj-image">
-              <img src="fotos/links.png" alt="Meus Links" loading="lazy" />
-              <div class="proj-overlay">
-                <a class="btn btn-primary" href="https://pixelbarz.github.io/linksdobarz/">VER PROJETO →</a>
-              </div>
-            </div>
-            <div class="proj-body">
-              <div class="proj-badge">AUTORAL</div>
-              <h3>Minha Página de Links</h3>
-              <p>Site fluido e design moderno pros meus links >.< </p>
-            </div>
-          </article>
+        <div class="projects-index">
+          <div class="proj-list" id="projList" role="tablist" aria-label="Lista de projetos">
+            <button
+              class="proj-item active"
+              role="tab"
+              aria-selected="true"
+              data-img="fotos/casatrigozero.png"
+              data-badge="CLIENTE REAL"
+              data-rank="RANK S"
+              data-desc="Landing page confortável e bonita pra quem visitar."
+              data-url="https://pixelbarz.github.io/casatrigozero/"
+            >
+              <span class="idx">01</span>
+              <span class="pi-name">Casa Trigo Zero</span>
+            </button>
+            <button
+              class="proj-item"
+              role="tab"
+              aria-selected="false"
+              data-img="fotos/Pixelbarz.png"
+              data-badge="AUTORAL"
+              data-rank="RANK A"
+              data-desc="Site fluido e design moderno pros meus links >.<"
+              data-url="https://pixelbarz.github.io/linksdobarz/"
+            >
+              <span class="idx">02</span>
+              <span class="pi-name">Minha Página de Links</span>
+            </button>
+            <button
+              class="proj-item"
+              role="tab"
+              aria-selected="false"
+              data-img="fotos/bio.png"
+              data-badge="AUTORAL"
+              data-rank="RANK A"
+              data-desc="Análise da qualidade do bioetanol seguindo as normas da ANP e ABNT."
+              data-url="https://pixelbarz.github.io/biocalculadora/"
+            >
+              <span class="idx">03</span>
+              <span class="pi-name">Biocalculadora</span>
+            </button>
+            <button
+              class="proj-item"
+              role="tab"
+              aria-selected="false"
+              data-img="fotos/studyos.png"
+              data-badge="AUTORAL"
+              data-rank="RANK A"
+              data-desc="Planner de estudos, direto e sem distração."
+              data-url="https://pixelbarz.github.io/studyos/"
+            >
+              <span class="idx">04</span>
+              <span class="pi-name">StudyOS</span>
+            </button>
+          </div>
 
-           <article class="project-card">
+          <div class="proj-panel" id="projPanel">
             <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
-            <div class="proj-header">
-              <div class="proj-dots"><span></span><span></span><span></span></div>
-              <span class="proj-path">biocalculadora/index.html</span>
-              <span class="proj-rank">RANK A</span>
-            </div>
-            <div class="proj-image">
-              <img src="fotos/bio.png" alt="biocalculadora" loading="lazy" />
-              <div class="proj-overlay">
-                <a class="btn btn-primary" href="https://pixelbarz.github.io/biocalculadora/">VER PROJETO →</a>
+            <img src="fotos/casatrigozero.png" alt="" id="projPanelImg" class="active" />
+            <div class="proj-panel-info">
+              <div class="proj-panel-top">
+                <span class="proj-badge" id="projBadge">CLIENTE REAL</span>
+                <span class="proj-rank" id="projRank">RANK S</span>
               </div>
+              <p class="proj-panel-desc" id="projDesc">Landing page confortável e bonita pra quem visitar.</p>
+              <a class="btn btn-primary proj-panel-link" id="projLink" href="https://pixelbarz.github.io/casatrigozero/" target="_blank" rel="noopener noreferrer">ABRIR PROJETO →</a>
             </div>
-            <div class="proj-body">
-              <div class="proj-badge">AUTORAL</div>
-              <h3>Biocalculadora</h3>
-              <p>Site de análise da qualidade do bioetanol seguindo as normas da ANP e ABNT.</p>
-            </div>
-          </article>
-
-           <article class="project-card">
-            <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
-            <div class="proj-header">
-              <div class="proj-dots"><span></span><span></span><span></span></div>
-              <span class="proj-path">StudyOS/index.html</span>
-              <span class="proj-rank">RANK A</span>
-            </div>
-            <div class="proj-image">
-              <img src="fotos/studyos.png" alt="StudyOS" loading="lazy" />
-              <div class="proj-overlay">
-                <a class="btn btn-primary" href="https://pixelbarz.github.io/studyos/">VER PROJETO →</a>
-              </div>
-            </div>
-            <div class="proj-body">
-              <div class="proj-badge">AUTORAL</div>
-              <h3>StudyOS</h3>
-              <p>Site com planner para estudos em geral.</p>
-            </div>
-          </article>
+          </div>
         </div>
       </section>
 
       <section id="contato" class="section container reveal">
-        <div class="contact-panel">
-          <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
-          <div class="contact-head">
-            <div class="section-num">05</div>
-            <div>
-              <p class="section-kicker">CONTATO</p>
-              <h2 class="section-title">Onde falar comigo</h2>
-            </div>
+        <div class="section-head">
+          <div class="section-num">05</div>
+          <div class="section-head-text">
+            <p class="section-kicker">CONTATO</p>
+            <h2 class="section-title">Onde falar comigo</h2>
           </div>
-          <p class="contact-desc">Se você quer um site mais bonito e leve, me chama nos canais abaixo.</p>
-          <div class="contact-grid">
-            <a class="contact-card" href="https://x.com/pixelbarz" target="_blank" rel="noopener noreferrer">
-              <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
-              <div class="contact-card-num">LN</div>
-              <h3>Twitter/X</h3>
-              <p>// posto algumas coisas lá</p>
-              <span class="contact-arrow">↗</span>
-            </a>
-            <a class="contact-card" href="https://github.com/pixelbarz" target="_blank" rel="noopener noreferrer">
-              <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
-              <div class="contact-card-num">GH</div>
-              <h3>GitHub</h3>
-              <p>// repositórios e código</p>
-              <span class="contact-arrow">↗</span>
-            </a>
-            <a class="contact-card" href="https://pixelbarz.github.io/linksdobarz/" target="_blank" rel="noopener noreferrer">
-              <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
-              <div class="contact-card-num">LK</div>
-              <h3>Meus Links</h3>
-              <p>// tudo num lugar :D</p>
-              <span class="contact-arrow">↗</span>
-            </a>
-          </div>
+        </div>
+        <p class="contact-desc">Se você quer um site mais bonito e leve, me chama em algum desses canais.</p>
+
+        <div class="contact-list">
+          <a class="contact-row" href="https://x.com/pixelbarz" target="_blank" rel="noopener noreferrer">
+            <span class="cr-name">Twitter / X</span>
+            <span class="cr-meta">// posto algumas coisas lá</span>
+            <span class="cr-arrow">↗</span>
+          </a>
+          <a class="contact-row" href="https://github.com/pixelbarz" target="_blank" rel="noopener noreferrer">
+            <span class="cr-name">GitHub</span>
+            <span class="cr-meta">// repositórios e código</span>
+            <span class="cr-arrow">↗</span>
+          </a>
+          <a class="contact-row" href="https://pixelbarz.github.io/linksdobarz/" target="_blank" rel="noopener noreferrer">
+            <span class="cr-name">Meus Links</span>
+            <span class="cr-meta">// tudo num lugar :D</span>
+            <span class="cr-arrow">↗</span>
+          </a>
         </div>
       </section>
 
@@ -464,13 +312,10 @@
 
     <footer class="footer">
       <div class="container footer-inner">
-        <div class="footer-left">
-          <p class="footer-name"><span>· PIXELBARZ</span></p>
-          <p class="footer-sub">Front-end em evolução · Designer nas horas vagas</p>
-        </div>
+        <p class="footer-name"><span>·</span> PIXELBARZ</p>
         <div class="footer-right">
           <span class="footer-status"></span>
-          <span>BRASIL · AGO 2026</span>
+          <span>BRASIL · 2026</span>
         </div>
       </div>
     </footer>
@@ -488,7 +333,6 @@
             <div class="vinyl-center">
               <img src="fotos/fmfl.jpg" alt="Album art" class="vinyl-art" id="vinylArt" />
             </div>
-            <div class="vinyl-shine"></div>
           </div>
           <div class="vinyl-needle" id="vinylNeedle"></div>
         </div>

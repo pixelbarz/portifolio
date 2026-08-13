@@ -13,7 +13,6 @@ const themeIcon    = $('#themeIcon');
 const revealEls    = $$('.reveal');
 const sections     = $$('main section[id]');
 const rotator      = $('#rotatingHeadline');
-const counters     = $$('.counter');
 const vpPlayBtn    = $('#vpPlayBtn');
 const vpIcon       = $('#vpIcon');
 const bgAudio      = $('#bgAudio');
@@ -23,8 +22,14 @@ const vpToggleBtn  = $('#vpToggleBtn');
 const vpBody       = $('#vpBody');
 const statFills    = $$('.pc-stat-fill');
 
+const projItems    = $$('.proj-item');
+const projPanelImg = $('#projPanelImg');
+const projBadge    = $('#projBadge');
+const projRank     = $('#projRank');
+const projDesc     = $('#projDesc');
+const projLink     = $('#projLink');
+
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const isMobile      = () => window.innerWidth <= 880;
 
 function setTheme(theme) {
   root.setAttribute('data-theme', theme);
@@ -47,14 +52,14 @@ if (bootScreen) {
   } else {
     let pct = 0;
     const pctInterval = setInterval(() => {
-      pct = Math.min(pct + Math.random() * 8 + 2, 100);
+      pct = Math.min(pct + Math.random() * 10 + 3, 100);
       if (bootPct) bootPct.textContent = Math.floor(pct) + '%';
       if (pct >= 100) clearInterval(pctInterval);
-    }, 80);
+    }, 70);
 
     setTimeout(() => {
       bootScreen.classList.add('done');
-    }, 2800);
+    }, 2000);
   }
 }
 
@@ -160,11 +165,7 @@ if (statFills.length) {
 }
 
 if (rotator) {
-  const phrases = [
-    'boa experiência.',
-    'interface bonita.',
-    'presença digital.',
-  ];
+  const phrases = ['boa experiência.', 'interface bonita.', 'presença digital.'];
 
   if (reducedMotion) {
     rotator.textContent = phrases[0];
@@ -176,10 +177,7 @@ if (rotator) {
       let i = 0;
       el.textContent = '';
       const tick = () => {
-        if (i >= text.length) {
-          if (cb) cb();
-          return;
-        }
+        if (i >= text.length) { if (cb) cb(); return; }
         el.textContent += text[i++];
         setTimeout(tick, speed);
       };
@@ -190,10 +188,7 @@ if (rotator) {
       let txt = el.textContent;
       let i = txt.length;
       const tick = () => {
-        if (i <= 0) {
-          if (cb) cb();
-          return;
-        }
+        if (i <= 0) { if (cb) cb(); return; }
         el.textContent = txt.slice(0, --i);
         setTimeout(tick, speed);
       };
@@ -213,45 +208,40 @@ if (rotator) {
       });
     }
 
-    const delay = bootScreen && !reducedMotion ? 3200 : 400;
+    const delay = bootScreen && !reducedMotion ? 2400 : 400;
     setTimeout(() => {
-      typeText(rotator, phrases[0], 55, () => {
-        setTimeout(rotate, 3500);
-      });
+      typeText(rotator, phrases[0], 55, () => { setTimeout(rotate, 3500); });
     }, delay);
   }
 }
 
-if (counters.length) {
-  if (reducedMotion) {
-    counters.forEach((el) => {
-      el.textContent = `${el.dataset.target}${el.dataset.suffix || ''}`;
-    });
-  } else {
-    const counterObs = new IntersectionObserver((entries, obs) => {
-      entries.forEach((e) => {
-        if (!e.isIntersecting) return;
-        const el = e.target;
-        const target = Number(el.dataset.target || 0);
-        const suffix = el.dataset.suffix || '';
-        const dur = 900;
-        const t0 = performance.now();
+// menu de seleção de projetos
+function setActiveProject(item) {
+  projItems.forEach((p) => {
+    p.classList.remove('active');
+    p.setAttribute('aria-selected', 'false');
+  });
+  item.classList.add('active');
+  item.setAttribute('aria-selected', 'true');
 
-        const tick = (now) => {
-          const p = Math.min((now - t0) / dur, 1);
-          const eased = 1 - Math.pow(1 - p, 3);
-          el.textContent = `${Math.round(target * eased)}${suffix}`;
-          if (p < 1) requestAnimationFrame(tick);
-        };
-
-        requestAnimationFrame(tick);
-        obs.unobserve(el);
-      });
-    }, { threshold: 0.4 });
-
-    counters.forEach((el) => counterObs.observe(el));
+  if (projPanelImg) {
+    projPanelImg.classList.remove('active');
+    setTimeout(() => {
+      projPanelImg.src = item.dataset.img;
+      projPanelImg.classList.add('active');
+    }, reducedMotion ? 0 : 120);
   }
+  if (projBadge) projBadge.textContent = item.dataset.badge;
+  if (projRank) projRank.textContent = item.dataset.rank;
+  if (projDesc) projDesc.textContent = item.dataset.desc;
+  if (projLink) projLink.href = item.dataset.url;
 }
+
+projItems.forEach((item) => {
+  item.addEventListener('click', () => setActiveProject(item));
+  item.addEventListener('mouseenter', () => setActiveProject(item));
+  item.addEventListener('focus', () => setActiveProject(item));
+});
 
 let isPlaying = false;
 
@@ -266,17 +256,11 @@ if (bgAudio) {
   bgAudio.volume = 0.4;
 
   const tryAutoplay = () => {
-    bgAudio.play().then(() => {
-      setPlayState(true);
-    }).catch(() => {
-      setPlayState(false);
-    });
+    bgAudio.play().then(() => setPlayState(true)).catch(() => setPlayState(false));
   };
 
   document.addEventListener('click', () => {
-    if (!isPlaying && bgAudio.paused) {
-      tryAutoplay();
-    }
+    if (!isPlaying && bgAudio.paused) tryAutoplay();
   }, { once: true });
 
   tryAutoplay();
@@ -295,14 +279,10 @@ if (vpPlayBtn && bgAudio) {
 
 if (bgAudio) {
   let wasPlayingBeforeHide = false;
-
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
       wasPlayingBeforeHide = isPlaying;
-      if (isPlaying) {
-        bgAudio.pause();
-        setPlayState(false);
-      }
+      if (isPlaying) { bgAudio.pause(); setPlayState(false); }
     } else if (wasPlayingBeforeHide) {
       bgAudio.play().then(() => setPlayState(true)).catch(() => setPlayState(false));
       wasPlayingBeforeHide = false;
