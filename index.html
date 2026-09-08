@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta property="og:title" content="PixelBarz" />
@@ -25,69 +25,58 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div class="bg-water" aria-hidden="true">
+      <div class="water-wash"></div>
+      <div class="water-caustics"></div>
+      <div class="bubbles" id="bubbles"></div>
+    </div>
 
     <div id="bootScreen" class="boot-screen" aria-hidden="true">
+      <div class="boot-shard"></div>
       <div class="boot-frame">
-        <div class="boot-corner tl"></div>
-        <div class="boot-corner tr"></div>
-        <div class="boot-corner bl"></div>
-        <div class="boot-corner br"></div>
-        <div class="boot-inner">
-          <div class="boot-jp">起動シーケンス</div>
-          <div class="boot-logo">PIXELBARZ</div>
-          <div class="boot-bar-wrap">
-            <div class="boot-bar">
-              <div class="boot-bar-fill"></div>
-            </div>
-            <div class="boot-bar-pct" id="bootPct">0%</div>
-          </div>
+        <div class="boot-jp">起動シーケンス</div>
+        <div class="boot-logo">PIXELBARZ</div>
+        <div class="boot-bar-wrap">
+          <div class="boot-bar"><div class="boot-bar-fill"></div></div>
+          <div class="boot-bar-pct" id="bootPct">0%</div>
         </div>
       </div>
     </div>
 
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-    <div class="hud-scanlines" aria-hidden="true"></div>
 
     <header class="header">
       <nav class="navbar container">
-        <a href="#inicio" class="logo">
-          <span class="logo-bracket">[</span>PixelBarz<span class="logo-bracket">]</span>
-        </a>
+        <a href="#inicio" class="logo"><span class="logo-bracket">[</span>PixelBarz<span class="logo-bracket">]</span></a>
 
         <ul class="nav-links" id="navLinks">
-          <li><a href="#inicio" data-label="01">INÍCIO</a></li>
-          <li><a href="#sobre" data-label="02">SOBRE</a></li>
-          <li><a href="#servicos" data-label="03">SERVIÇOS</a></li>
-          <li><a href="#projetos" data-label="04">PROJETOS</a></li>
-          <li><a href="#contato" data-label="05">CONTATO</a></li>
+          <li><span class="nav-cursor" id="navCursor" aria-hidden="true"></span>
+            <a href="#inicio" data-label="01">INÍCIO</a>
+            <a href="#sobre" data-label="02">SOBRE</a>
+            <a href="#servicos" data-label="03">SERVIÇOS</a>
+            <a href="#projetos" data-label="04">PROJETOS</a>
+            <a href="#contato" data-label="05">CONTATO</a>
+          </li>
         </ul>
 
-        <div class="nav-actions">
-          <button class="icon-btn" id="themeToggle" aria-label="Alternar tema">
-            <span id="themeIcon">☀</span>
-          </button>
-          <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
-            <span class="hamburger"><i></i><i></i><i></i></span>
-          </button>
-        </div>
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+          <span class="hamburger"><i></i><i></i><i></i></span>
+        </button>
       </nav>
     </header>
 
     <main>
-
-      <section id="inicio" class="hero container reveal">
+      <section id="inicio" class="hero container">
         <div class="hero-copy">
-          <div class="hero-eyebrow">
-            <span class="eyebrow-line"></span>
-            <span class="eyebrow-text">PORTFOLIO · WEB FRONT-END · BRASIL</span>
-          </div>
+          <div class="tag tag-hero"><span class="tag-num">01</span><span class="tag-label">PORTFOLIO — WEB FRONT-END</span></div>
+          <span class="eyebrow-jp">構築者</span>
 
           <h1 class="hero-title">
-            Design bom pra uma<br>
+            Design bom pra uma<br />
             <span id="rotatingHeadline" class="headline-rotator">boa experiência.</span>
           </h1>
 
-          <p class="hero-desc">Sites fluidos e bonitinhos que funcionam bem em qualquer lugar :P</p>
+          <p class="hero-desc">Sites fluidos e bonitinhos que funcionam bem em qualquer lugar.</p>
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="#projetos">VER PROJETOS</a>
@@ -96,10 +85,7 @@
 
           <p class="hero-ticker">
             <span class="hud-val online">ONLINE</span>
-            <span class="hud-sep">//</span>
-            RESPOSTA EM 24H
-            <span class="hud-sep">//</span>
-            ATUALIZADO AGO 2026
+            <span class="hud-sep">//</span>RESPOSTA EM 24H<span class="hud-sep">//</span>ATUALIZADO AGO 2026
           </p>
         </div>
 
@@ -107,91 +93,68 @@
           <div class="profile-card">
             <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
             <div class="pc-header">
-              <div class="pc-dots"><span></span><span></span><span></span></div>
-              <span class="pc-path">$ cat profile.json</span>
+              <span class="pc-path">cat profile.json</span>
               <span class="pc-badge">ATIVO</span>
             </div>
             <div class="pc-photo-wrap">
               <img class="pc-photo" src="fotos/makoto.jpg" alt="Foto de perfil de José Braz" />
-              <div class="pc-photo-overlay"></div>
             </div>
             <div class="pc-body">
-              <p class="pc-role">// front-end creator</p>
+              <p class="pc-role">front-end creator</p>
               <h3 class="pc-name">Barz</h3>
-              <p class="pc-desc">Sites bem feitos, fluidos e legais :D</p>
+              <p class="pc-desc">Sites bem feitos, fluidos e legais.</p>
               <div class="pc-stats">
-                <div class="pc-stat">
-                  <span>DESIGN</span>
-                  <div class="pc-stat-bar"><div class="pc-stat-fill" style="--w:85%"></div></div>
-                  <span class="pc-stat-val">85</span>
-                </div>
-                <div class="pc-stat">
-                  <span>UX/UI</span>
-                  <div class="pc-stat-bar"><div class="pc-stat-fill" style="--w:90%"></div></div>
-                  <span class="pc-stat-val">90</span>
-                </div>
+                <div class="pc-stat"><span>DESIGN</span><div class="pc-stat-bar"><div class="pc-stat-fill" style="--w:85%"></div></div><span class="pc-stat-val">85</span></div>
+                <div class="pc-stat"><span>UX/UI</span><div class="pc-stat-bar"><div class="pc-stat-fill" style="--w:90%"></div></div><span class="pc-stat-val">90</span></div>
               </div>
             </div>
           </div>
         </aside>
       </section>
 
+      <div class="section-divider" aria-hidden="true"></div>
+
       <section id="sobre" class="section container reveal">
         <div class="section-head">
-          <div class="section-num">02</div>
-          <div class="section-head-text">
-            <p class="section-kicker">SOBRE</p>
-            <h2 class="section-title">Um pouco do meu trabalho</h2>
-          </div>
+          <div class="tag"><span class="tag-num">02</span><span class="tag-label">SOBRE</span></div>
+          <h2 class="section-title">Um pouco do meu trabalho</h2>
         </div>
 
         <div class="about-grid">
-          <p class="about-lead">
-            Sou estudante e no tempo livre faço uns sites. Nerdola e fã de qualquer coisa que envolva tecnologia. eba
-          </p>
+          <p class="about-lead">Sou estudante e no tempo livre faço uns sites. Nerdola e fã de qualquer coisa que envolva tecnologia.</p>
           <ul class="about-points">
-            <li><span class="ap-num">01</span> Estrutura boa e bem feita (eu acho)</li>
-            <li><span class="ap-num">02</span> Performance boa sem deixar o site feio (tipo o gov)</li>
-            <li><span class="ap-num">03</span> Estética simples que funciona bem.</li>
+            <li>Estrutura boa e bem feita</li>
+            <li>Performance boa sem deixar o site feio</li>
+            <li>Estética simples que funciona bem</li>
           </ul>
         </div>
 
         <div class="marquee" aria-hidden="true">
           <div class="marquee-track">
-            <span>HTML</span><span>·</span><span>CSS</span><span>·</span><span>JAVASCRIPT</span><span>·</span>
-            <span>UI/UX</span><span>·</span><span>ANIMAÇÃO</span><span>·</span><span>GITHUB PAGES</span><span>·</span>
-            <span>DESIGN FLUIDO</span><span>·</span>
-            <span>HTML</span><span>·</span><span>CSS</span><span>·</span><span>JAVASCRIPT</span><span>·</span>
-            <span>UI/UX</span><span>·</span><span>ANIMAÇÃO</span><span>·</span><span>GITHUB PAGES</span><span>·</span>
-            <span>DESIGN FLUIDO</span><span>·</span>
+            <span>HTML</span><span>CSS</span><span>JAVASCRIPT</span><span>UI/UX</span><span>ANIMAÇÃO</span><span>GITHUB PAGES</span><span>DESIGN FLUIDO</span>
+            <span>HTML</span><span>CSS</span><span>JAVASCRIPT</span><span>UI/UX</span><span>ANIMAÇÃO</span><span>GITHUB PAGES</span><span>DESIGN FLUIDO</span>
           </div>
         </div>
       </section>
 
       <section id="servicos" class="section container reveal">
         <div class="section-head">
-          <div class="section-num">03</div>
-          <div class="section-head-text">
-            <p class="section-kicker">SERVIÇOS</p>
-            <h2 class="section-title">O que eu faço</h2>
-          </div>
+          <div class="tag"><span class="tag-num">03</span><span class="tag-label">SERVIÇOS</span></div>
+          <h2 class="section-title">O que eu faço</h2>
         </div>
 
         <div class="services-list">
           <div class="service-row">
-            <span class="sr-idx">01</span>
             <h3 class="sr-title">Landing Page</h3>
             <p class="sr-desc">Página única com design bom e minimalista.</p>
             <span class="sr-arrow">→</span>
           </div>
           <div class="service-row">
-            <span class="sr-idx">02</span>
             <h3 class="sr-title">Portfólio Profissional</h3>
             <p class="sr-desc">Site pessoal pra destacar projetos, habilidades e divulgar o trabalho.</p>
             <span class="sr-arrow">→</span>
           </div>
           <div class="service-row">
-            <span class="sr-idx">03</span>
             <h3 class="sr-title">Refatoração Visual</h3>
             <p class="sr-desc">Melhoria de design, layout e experiência em sites que já existem.</p>
             <span class="sr-arrow">→</span>
@@ -201,65 +164,35 @@
 
       <section id="projetos" class="section container reveal">
         <div class="section-head">
-          <div class="section-num">04</div>
-          <div class="section-head-text">
-            <p class="section-kicker">PORTFÓLIO</p>
-            <h2 class="section-title">Meus projetos</h2>
-          </div>
+          <div class="tag"><span class="tag-num">04</span><span class="tag-label">PORTFÓLIO</span></div>
+          <h2 class="section-title">Meus projetos</h2>
         </div>
 
         <div class="projects-index">
           <div class="proj-list" id="projList" role="tablist" aria-label="Lista de projetos">
-            <button
-              class="proj-item active"
-              role="tab"
-              aria-selected="true"
-              data-img="fotos/casatrigozero.png"
-              data-badge="CLIENTE REAL"
-              data-rank="RANK S"
+            <span class="proj-cursor" id="projCursor" aria-hidden="true"></span>
+            <button class="proj-item active" role="tab" aria-selected="true"
+              data-img="fotos/casatrigozero.png" data-badge="CLIENTE REAL" data-rank="RANK S"
               data-desc="Landing page confortável e bonita pra quem visitar."
-              data-url="https://pixelbarz.github.io/casatrigozero/"
-            >
-              <span class="idx">01</span>
+              data-url="https://pixelbarz.github.io/casatrigozero/">
               <span class="pi-name">Casa Trigo Zero</span>
             </button>
-            <button
-              class="proj-item"
-              role="tab"
-              aria-selected="false"
-              data-img="fotos/Pixelbarz.png"
-              data-badge="AUTORAL"
-              data-rank="RANK A"
-              data-desc="Site fluido e design moderno pros meus links >.<"
-              data-url="https://pixelbarz.github.io/linksdobarz/"
-            >
-              <span class="idx">02</span>
+            <button class="proj-item" role="tab" aria-selected="false"
+              data-img="fotos/Pixelbarz.png" data-badge="AUTORAL" data-rank="RANK A"
+              data-desc="Site fluido e design moderno pros meus links."
+              data-url="https://pixelbarz.github.io/linksdobarz/">
               <span class="pi-name">Minha Página de Links</span>
             </button>
-            <button
-              class="proj-item"
-              role="tab"
-              aria-selected="false"
-              data-img="fotos/bio.png"
-              data-badge="AUTORAL"
-              data-rank="RANK A"
+            <button class="proj-item" role="tab" aria-selected="false"
+              data-img="fotos/bio.png" data-badge="AUTORAL" data-rank="RANK A"
               data-desc="Análise da qualidade do bioetanol seguindo as normas da ANP e ABNT."
-              data-url="https://pixelbarz.github.io/biocalculadora/"
-            >
-              <span class="idx">03</span>
+              data-url="https://pixelbarz.github.io/biocalculadora/">
               <span class="pi-name">Biocalculadora</span>
             </button>
-            <button
-              class="proj-item"
-              role="tab"
-              aria-selected="false"
-              data-img="fotos/studyos.png"
-              data-badge="AUTORAL"
-              data-rank="RANK A"
+            <button class="proj-item" role="tab" aria-selected="false"
+              data-img="fotos/studyos.png" data-badge="AUTORAL" data-rank="RANK A"
               data-desc="Planner de estudos, direto e sem distração."
-              data-url="https://pixelbarz.github.io/studyos/"
-            >
-              <span class="idx">04</span>
+              data-url="https://pixelbarz.github.io/studyos/">
               <span class="pi-name">StudyOS</span>
             </button>
           </div>
@@ -281,42 +214,29 @@
 
       <section id="contato" class="section container reveal">
         <div class="section-head">
-          <div class="section-num">05</div>
-          <div class="section-head-text">
-            <p class="section-kicker">CONTATO</p>
-            <h2 class="section-title">Onde falar comigo</h2>
-          </div>
+          <div class="tag"><span class="tag-num">05</span><span class="tag-label">CONTATO</span></div>
+          <h2 class="section-title">Onde falar comigo</h2>
         </div>
         <p class="contact-desc">Se você quer um site mais bonito e leve, me chama em algum desses canais.</p>
 
         <div class="contact-list">
           <a class="contact-row" href="https://x.com/pixelbarz" target="_blank" rel="noopener noreferrer">
-            <span class="cr-name">Twitter / X</span>
-            <span class="cr-meta">// posto algumas coisas lá</span>
-            <span class="cr-arrow">↗</span>
+            <span class="cr-name">Twitter / X</span><span class="cr-meta">posto algumas coisas lá</span><span class="cr-arrow">↗</span>
           </a>
           <a class="contact-row" href="https://github.com/pixelbarz" target="_blank" rel="noopener noreferrer">
-            <span class="cr-name">GitHub</span>
-            <span class="cr-meta">// repositórios e código</span>
-            <span class="cr-arrow">↗</span>
+            <span class="cr-name">GitHub</span><span class="cr-meta">repositórios e código</span><span class="cr-arrow">↗</span>
           </a>
           <a class="contact-row" href="https://pixelbarz.github.io/linksdobarz/" target="_blank" rel="noopener noreferrer">
-            <span class="cr-name">Meus Links</span>
-            <span class="cr-meta">// tudo num lugar :D</span>
-            <span class="cr-arrow">↗</span>
+            <span class="cr-name">Meus Links</span><span class="cr-meta">tudo num lugar</span><span class="cr-arrow">↗</span>
           </a>
         </div>
       </section>
-
     </main>
 
     <footer class="footer">
       <div class="container footer-inner">
-        <p class="footer-name"><span>·</span> PIXELBARZ</p>
-        <div class="footer-right">
-          <span class="footer-status"></span>
-          <span>BRASIL · 2026</span>
-        </div>
+        <p class="footer-name">PIXELBARZ</p>
+        <div class="footer-right"><span class="footer-status"></span><span>BRASIL · 2026</span></div>
       </div>
     </footer>
 
@@ -329,20 +249,12 @@
       <div class="vp-body" id="vpBody">
         <div class="vinyl-wrap" id="vinylWrap">
           <div class="vinyl-disc" id="vinylDisc">
-            <div class="vinyl-grooves"></div>
-            <div class="vinyl-center">
-              <img src="fotos/fmfl.jpg" alt="Album art" class="vinyl-art" id="vinylArt" />
-            </div>
+            <div class="vinyl-center"><img src="fotos/fmfl.jpg" alt="Album art" class="vinyl-art" id="vinylArt" /></div>
           </div>
           <div class="vinyl-needle" id="vinylNeedle"></div>
         </div>
-        <div class="vp-info">
-          <p class="vp-track">Musica</p>
-          <p class="vp-artist">josebraz.cc</p>
-        </div>
-        <button class="vp-btn" id="vpPlayBtn" aria-label="Play/Pause">
-          <span id="vpIcon">▶</span>
-        </button>
+        <div class="vp-info"><p class="vp-track">Musica</p><p class="vp-artist">josebraz.cc</p></div>
+        <button class="vp-btn" id="vpPlayBtn" aria-label="Play/Pause"><span id="vpIcon">▶</span></button>
       </div>
       <audio id="bgAudio" src="persona.mp3" loop preload="auto"></audio>
     </div>

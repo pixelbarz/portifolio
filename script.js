@@ -1,15 +1,13 @@
 const $ = (sel, ctx) => (ctx || document).querySelector(sel);
 const $$ = (sel, ctx) => [...(ctx || document).querySelectorAll(sel)];
 
-const root         = document.documentElement;
 const bootScreen   = $('#bootScreen');
 const bootPct      = $('#bootPct');
 const scrollBar    = $('#scrollProgress');
 const menuToggle   = $('#menuToggle');
 const navLinks     = $('#navLinks');
 const navAnchors   = $$('.nav-links a');
-const themeToggle  = $('#themeToggle');
-const themeIcon    = $('#themeIcon');
+const navCursor    = $('#navCursor');
 const revealEls    = $$('.reveal');
 const sections     = $$('main section[id]');
 const rotator      = $('#rotatingHeadline');
@@ -23,6 +21,7 @@ const vpBody       = $('#vpBody');
 const statFills    = $$('.pc-stat-fill');
 
 const projItems    = $$('.proj-item');
+const projCursor   = $('#projCursor');
 const projPanelImg = $('#projPanelImg');
 const projBadge    = $('#projBadge');
 const projRank     = $('#projRank');
@@ -31,19 +30,25 @@ const projLink     = $('#projLink');
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function setTheme(theme) {
-  root.setAttribute('data-theme', theme);
-  localStorage.setItem('theme', theme);
-  if (themeIcon) themeIcon.textContent = theme === 'dark' ? '☀' : '☾';
-}
-
-const savedTheme = localStorage.getItem('theme');
-setTheme(savedTheme === 'light' ? 'light' : 'dark');
-
-if (themeToggle) {
-  themeToggle.addEventListener('click', () => {
-    setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-  });
+const bubbleField = $('#bubbles');
+if (bubbleField && !reducedMotion) {
+  const count = window.innerWidth < 640 ? 10 : 18;
+  for (let i = 0; i < count; i++) {
+    const bubble = document.createElement('span');
+    const size = 6 + Math.random() * 22;
+    const left = Math.random() * 100;
+    const duration = 10 + Math.random() * 12;
+    const delay = Math.random() * -duration;
+    const drift = (Math.random() * 60 - 30).toFixed(0) + 'px';
+    bubble.className = 'bubble';
+    bubble.style.width = size + 'px';
+    bubble.style.height = size + 'px';
+    bubble.style.left = left + '%';
+    bubble.style.setProperty('--drift', drift);
+    bubble.style.animationDuration = duration + 's';
+    bubble.style.animationDelay = delay + 's';
+    bubbleField.appendChild(bubble);
+  }
 }
 
 if (bootScreen) {
@@ -56,10 +61,7 @@ if (bootScreen) {
       if (bootPct) bootPct.textContent = Math.floor(pct) + '%';
       if (pct >= 100) clearInterval(pctInterval);
     }, 70);
-
-    setTimeout(() => {
-      bootScreen.classList.add('done');
-    }, 2000);
+    setTimeout(() => bootScreen.classList.add('done'), 1900);
   }
 }
 
@@ -68,7 +70,6 @@ if (menuToggle && navLinks) {
     const open = navLinks.classList.toggle('open');
     menuToggle.setAttribute('aria-expanded', String(open));
   });
-
   document.addEventListener('click', (e) => {
     if (navLinks.contains(e.target) || menuToggle.contains(e.target)) return;
     navLinks.classList.remove('open');
@@ -82,6 +83,13 @@ navAnchors.forEach((a) => {
     menuToggle && menuToggle.setAttribute('aria-expanded', 'false');
   });
 });
+
+function moveNavCursor(target) {
+  if (!navCursor || !target) return;
+  navCursor.style.opacity = '1';
+  navCursor.style.left = target.offsetLeft + 'px';
+  navCursor.style.width = target.offsetWidth + 'px';
+}
 
 let sectionBounds = [];
 
@@ -100,10 +108,14 @@ function updateActiveNav() {
   sectionBounds.forEach((b) => {
     if (y >= b.top && y < b.bottom) activeId = b.id;
   });
+  let activeAnchor = null;
   navAnchors.forEach((a) => {
     const target = a.getAttribute('href')?.replace('#', '');
-    a.classList.toggle('active', target === activeId);
+    const isActive = target === activeId;
+    a.classList.toggle('active', isActive);
+    if (isActive) activeAnchor = a;
   });
+  if (activeAnchor) moveNavCursor(activeAnchor);
 }
 
 function updateScrollProgress() {
@@ -129,10 +141,6 @@ window.addEventListener('resize', () => {
   updateScrollProgress();
 }, { passive: true });
 
-revealEls.forEach((el, i) => {
-  el.style.setProperty('--reveal-delay', `${i * 60}ms`);
-});
-
 if (reducedMotion) {
   revealEls.forEach((el) => el.classList.add('visible'));
 } else {
@@ -142,8 +150,7 @@ if (reducedMotion) {
       e.target.classList.add('visible');
       obs.unobserve(e.target);
     });
-  }, { threshold: 0.08 });
-
+  }, { threshold: 0.1 });
   revealEls.forEach((el) => revealObs.observe(el));
 }
 
@@ -152,12 +159,10 @@ if (statFills.length) {
     entries.forEach((e) => {
       if (!e.isIntersecting) return;
       const fill = e.target;
-      const w = fill.style.getPropertyValue('--w');
-      fill.style.width = w;
+      fill.style.width = fill.style.getPropertyValue('--w');
       obs.unobserve(fill);
     });
   }, { threshold: 0.3 });
-
   statFills.forEach((f) => {
     f.style.width = '0';
     statObs.observe(f);
@@ -208,14 +213,19 @@ if (rotator) {
       });
     }
 
-    const delay = bootScreen && !reducedMotion ? 2400 : 400;
+    const delay = bootScreen && !reducedMotion ? 2200 : 400;
     setTimeout(() => {
-      typeText(rotator, phrases[0], 55, () => { setTimeout(rotate, 3500); });
+      typeText(rotator, phrases[0], 55, () => setTimeout(rotate, 3500));
     }, delay);
   }
 }
 
-// menu de seleção de projetos
+function moveProjCursor(item) {
+  if (!projCursor || !item) return;
+  projCursor.style.top = item.offsetTop + 'px';
+  projCursor.style.height = item.offsetHeight + 'px';
+}
+
 function setActiveProject(item) {
   projItems.forEach((p) => {
     p.classList.remove('active');
@@ -223,6 +233,7 @@ function setActiveProject(item) {
   });
   item.classList.add('active');
   item.setAttribute('aria-selected', 'true');
+  moveProjCursor(item);
 
   if (projPanelImg) {
     projPanelImg.classList.remove('active');
@@ -243,6 +254,8 @@ projItems.forEach((item) => {
   item.addEventListener('focus', () => setActiveProject(item));
 });
 
+if (projItems.length) moveProjCursor(projItems[0]);
+
 let isPlaying = false;
 
 function setPlayState(playing) {
@@ -254,15 +267,12 @@ function setPlayState(playing) {
 
 if (bgAudio) {
   bgAudio.volume = 0.4;
-
   const tryAutoplay = () => {
     bgAudio.play().then(() => setPlayState(true)).catch(() => setPlayState(false));
   };
-
   document.addEventListener('click', () => {
     if (!isPlaying && bgAudio.paused) tryAutoplay();
   }, { once: true });
-
   tryAutoplay();
 }
 
