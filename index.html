@@ -1,264 +1,380 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfólio interativo de PixelBarz, Web developer."
+    />
     <meta property="og:title" content="PixelBarz" />
-    <meta property="og:description" content="Building for the web" />
-    <meta property="og:image" content="https://pixelbarz.github.io/portifolio/preview.png" />
+    <meta
+      property="og:description"
+      content="Interfaces e experiências digitais feitas com cuidado."
+    />
+    <meta
+      property="og:image"
+      content="https://pixelbarz.github.io/portifolio/preview.png"
+    />
     <meta property="og:url" content="https://pixelbarz.github.io/portifolio/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="PixelBarz" />
-    <meta property="og:locale" content="pt_BR" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="PixelBarz" />
-    <meta name="twitter:description" content="Building for the web" />
-    <meta name="twitter:image" content="https://pixelbarz.github.io/portifolio/preview.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfólio de José Braz – Front-end Developer" />
-    <title>PixelBarz</title>
+    <title>PixelBarz - Web Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:ital,wght@0,500;0,700;0,900;1,700;1,900&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="bg-water" aria-hidden="true">
-      <div class="water-wash"></div>
-      <div class="water-caustics"></div>
-      <div class="bubbles" id="bubbles"></div>
-    </div>
-
-    <div id="bootScreen" class="boot-screen" aria-hidden="true">
-      <div class="boot-shard"></div>
-      <div class="boot-frame">
-        <div class="boot-jp">起動シーケンス</div>
-        <div class="boot-logo">PIXELBARZ</div>
-        <div class="boot-bar-wrap">
-          <div class="boot-bar"><div class="boot-bar-fill"></div></div>
-          <div class="boot-bar-pct" id="bootPct">0%</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-
-    <header class="header">
-      <nav class="navbar container">
-        <a href="#inicio" class="logo"><span class="logo-bracket">[</span>PixelBarz<span class="logo-bracket">]</span></a>
-
-        <ul class="nav-links" id="navLinks">
-          <li><span class="nav-cursor" id="navCursor" aria-hidden="true"></span>
-            <a href="#inicio" data-label="01">INÍCIO</a>
-            <a href="#sobre" data-label="02">SOBRE</a>
-            <a href="#servicos" data-label="03">SERVIÇOS</a>
-            <a href="#projetos" data-label="04">PROJETOS</a>
-            <a href="#contato" data-label="05">CONTATO</a>
-          </li>
-        </ul>
-
-        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
-          <span class="hamburger"><i></i><i></i><i></i></span>
+    <a class="skip-link" href="#workspace">Pular para o conteúdo</a>
+    <div class="noise" aria-hidden="true"></div>
+    <main class="experience" id="workspace" aria-live="polite">
+      <header class="system-bar">
+        <a
+          class="wordmark"
+          href="#inicio"
+          data-view="inicio"
+          aria-label="PixelBarz, início"
+          >pixel<span>barz</span><i>.</i></a
+        >
+        <p class="system-title">interface pessoal / 2026</p>
+        <button
+          class="sound-button"
+          id="soundButton"
+          type="button"
+          aria-pressed="false"
+        >
+          som <span>off</span></button
+        ><audio id="audio" src="persona.mp3" loop preload="none"></audio>
+      </header>
+      <nav class="scene-nav" aria-label="Áreas do portfólio">
+        <button
+          class="scene-link is-active"
+          type="button"
+          data-view="inicio"
+          aria-current="page"
+        >
+          <span>01</span>início</button
+        ><button class="scene-link" type="button" data-view="perfil">
+          <span>02</span>perfil</button
+        ><button class="scene-link" type="button" data-view="projetos">
+          <span>03</span>projetos</button
+        ><button class="scene-link" type="button" data-view="contato">
+          <span>04</span>contato
         </button>
       </nav>
-    </header>
-
-    <main>
-      <section id="inicio" class="hero container">
-        <div class="hero-copy">
-          <div class="tag tag-hero"><span class="tag-num">01</span><span class="tag-label">PORTFOLIO — WEB FRONT-END</span></div>
-          <span class="eyebrow-jp">構築者</span>
-
-          <h1 class="hero-title">
-            Design bom pra uma<br />
-            <span id="rotatingHeadline" class="headline-rotator">boa experiência.</span>
-          </h1>
-
-          <p class="hero-desc">Sites fluidos e bonitinhos que funcionam bem em qualquer lugar.</p>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#projetos">VER PROJETOS</a>
-            <a class="btn btn-secondary" href="#contato">FALAR COMIGO</a>
+      <div class="scene-stage">
+        <section
+          class="scene home-scene is-active"
+          id="inicio"
+          data-scene="inicio"
+          aria-labelledby="home-title"
+        >
+          <div class="home-copy">
+            <p class="scene-kicker">desenvolvedor front-end</p>
+            <h1 id="home-title">
+              Eu construo<br /><strong>interfaces</strong> que<br />pedem
+              interação.
+            </h1>
+            <p class="home-intro">
+              PixelBarz (eu :P) cria experiências digitais bonitas, expressivas e leves
+              para usar.
+            </p>
+            <div class="home-actions">
+              <button class="action-button" type="button" data-view="projetos">
+                explorar projetos <b>↘</b></button
+              ><button class="quiet-action" type="button" data-view="perfil">
+                ler o perfil
+              </button>
+            </div>
           </div>
-
-          <p class="hero-ticker">
-            <span class="hud-val online">ONLINE</span>
-            <span class="hud-sep">//</span>RESPOSTA EM 24H<span class="hud-sep">//</span>ATUALIZADO AGO 2026
+          <figure class="portrait-panel">
+            <div class="portrait-frame">
+              <img
+                src="fotos/makoto.jpg"
+                alt="Retrato de PixelBarz"
+                fetchpriority="high"
+              />
+            </div>
+            <figcaption>
+              PixelBarz <span>front-end / interface</span>
+            </figcaption>
+          </figure>
+          <div class="home-geometry" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+          <p class="interaction-hint">
+            use as áreas do sistema ou as teclas 1-4
           </p>
-        </div>
-
-        <aside class="hero-visual">
-          <div class="profile-card">
-            <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
-            <div class="pc-header">
-              <span class="pc-path">cat profile.json</span>
-              <span class="pc-badge">ATIVO</span>
+        </section>
+        <section
+          class="scene profile-scene"
+          id="perfil"
+          data-scene="perfil"
+          aria-labelledby="profile-title"
+          hidden
+        >
+          <div class="profile-heading">
+            <p class="scene-kicker">perfil operacional</p>
+            <h2 id="profile-title">Estrutura antes<br />do efeito.</h2>
+          </div>
+          <div class="profile-content">
+            <p class="profile-lead">
+              Sou estudante e, no tempo livre, construo sites. Gosto de
+              melhorar estruturas e criar uma boa experiencia para os usuarios.
+            </p>
+            <div class="principles">
+              <article>
+                <span>01</span>
+                <h3>Clareza</h3>
+                <p>
+                  Uma base bem organizada deixa qualquer experiência mais fácil
+                  de usar e manter.
+                </p>
+              </article>
+              <article>
+                <span>02</span>
+                <h3>Leveza</h3>
+                <p>
+                  A performance faz parte de um site realmente bem
+                  feito.
+                </p>
+              </article>
+              <article>
+                <span>03</span>
+                <h3>Direção</h3>
+                <p>
+                  Visual bom orienta, cria ritmo e ajuda a comunicar melhor com o usuario.
+                </p>
+              </article>
             </div>
-            <div class="pc-photo-wrap">
-              <img class="pc-photo" src="fotos/makoto.jpg" alt="Foto de perfil de José Braz" />
+          </div>
+          <div class="skill-orbit" aria-label="Tecnologias e focos">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span
+            ><span>UI/UX</span><span>Animação</span><span>GitHub Pages</span>
+          </div>
+        </section>
+        <section
+          class="scene projects-scene"
+          id="projetos"
+          data-scene="projetos"
+          aria-labelledby="projects-title"
+          hidden
+        >
+          <aside class="project-index">
+            <div>
+              <p class="scene-kicker">arquivo selecionado</p>
+              <h2 id="projects-title">Project<br />index.</h2>
             </div>
-            <div class="pc-body">
-              <p class="pc-role">front-end creator</p>
-              <h3 class="pc-name">Barz</h3>
-              <p class="pc-desc">Sites bem feitos, fluidos e legais.</p>
-              <div class="pc-stats">
-                <div class="pc-stat"><span>DESIGN</span><div class="pc-stat-bar"><div class="pc-stat-fill" style="--w:85%"></div></div><span class="pc-stat-val">85</span></div>
-                <div class="pc-stat"><span>UX/UI</span><div class="pc-stat-bar"><div class="pc-stat-fill" style="--w:90%"></div></div><span class="pc-stat-val">90</span></div>
+            <div class="project-tabs" role="tablist" aria-label="Projetos">
+              <button
+                class="project-tab is-active"
+                id="tab-casa"
+                role="tab"
+                type="button"
+                aria-selected="true"
+                aria-controls="project-casa"
+                data-project="casa"
+              >
+                <span>01</span>Casa Trigo Zero</button
+              ><button
+                class="project-tab"
+                id="tab-links"
+                role="tab"
+                type="button"
+                aria-selected="false"
+                aria-controls="project-links"
+                data-project="links"
+                tabindex="-1"
+              >
+                <span>02</span>Página de Links</button
+              ><button
+                class="project-tab"
+                id="tab-bio"
+                role="tab"
+                type="button"
+                aria-selected="false"
+                aria-controls="project-bio"
+                data-project="bio"
+                tabindex="-1"
+              >
+                <span>03</span>Biocalculadora</button
+              ><button
+                class="project-tab"
+                id="tab-study"
+                role="tab"
+                type="button"
+                aria-selected="false"
+                aria-controls="project-study"
+                data-project="study"
+                tabindex="-1"
+              >
+                <span>04</span>StudyOS
+              </button>
+            </div>
+          </aside>
+          <div class="project-screen">
+            <article
+              class="project-panel is-active"
+              id="project-casa"
+              role="tabpanel"
+              aria-labelledby="tab-casa"
+            >
+              <img
+                src="fotos/casatrigozero.jpg"
+                alt="Prévia do site Casa Trigo Zero"
+              />
+              <div class="project-information">
+                <p>cliente real / landing page</p>
+                <h3>Casa Trigo Zero</h3>
+                <p>
+                  Uma presença digital acolhedora, pensada para apresentar a
+                  casa com clareza.
+                </p>
+                <div>HTML&nbsp;&nbsp; CSS&nbsp;&nbsp; JavaScript</div>
+                <a
+                  href="https://pixelbarz.github.io/casatrigozero/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >abrir projeto ↗</a
+                >
               </div>
-            </div>
-          </div>
-        </aside>
-      </section>
-
-      <div class="section-divider" aria-hidden="true"></div>
-
-      <section id="sobre" class="section container reveal">
-        <div class="section-head">
-          <div class="tag"><span class="tag-num">02</span><span class="tag-label">SOBRE</span></div>
-          <h2 class="section-title">Um pouco do meu trabalho</h2>
-        </div>
-
-        <div class="about-grid">
-          <p class="about-lead">Sou estudante e no tempo livre faço uns sites. Nerdola e fã de qualquer coisa que envolva tecnologia.</p>
-          <ul class="about-points">
-            <li>Estrutura boa e bem feita</li>
-            <li>Performance boa sem deixar o site feio</li>
-            <li>Estética simples que funciona bem</li>
-          </ul>
-        </div>
-
-        <div class="marquee" aria-hidden="true">
-          <div class="marquee-track">
-            <span>HTML</span><span>CSS</span><span>JAVASCRIPT</span><span>UI/UX</span><span>ANIMAÇÃO</span><span>GITHUB PAGES</span><span>DESIGN FLUIDO</span>
-            <span>HTML</span><span>CSS</span><span>JAVASCRIPT</span><span>UI/UX</span><span>ANIMAÇÃO</span><span>GITHUB PAGES</span><span>DESIGN FLUIDO</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="servicos" class="section container reveal">
-        <div class="section-head">
-          <div class="tag"><span class="tag-num">03</span><span class="tag-label">SERVIÇOS</span></div>
-          <h2 class="section-title">O que eu faço</h2>
-        </div>
-
-        <div class="services-list">
-          <div class="service-row">
-            <h3 class="sr-title">Landing Page</h3>
-            <p class="sr-desc">Página única com design bom e minimalista.</p>
-            <span class="sr-arrow">→</span>
-          </div>
-          <div class="service-row">
-            <h3 class="sr-title">Portfólio Profissional</h3>
-            <p class="sr-desc">Site pessoal pra destacar projetos, habilidades e divulgar o trabalho.</p>
-            <span class="sr-arrow">→</span>
-          </div>
-          <div class="service-row">
-            <h3 class="sr-title">Refatoração Visual</h3>
-            <p class="sr-desc">Melhoria de design, layout e experiência em sites que já existem.</p>
-            <span class="sr-arrow">→</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="projetos" class="section container reveal">
-        <div class="section-head">
-          <div class="tag"><span class="tag-num">04</span><span class="tag-label">PORTFÓLIO</span></div>
-          <h2 class="section-title">Meus projetos</h2>
-        </div>
-
-        <div class="projects-index">
-          <div class="proj-list" id="projList" role="tablist" aria-label="Lista de projetos">
-            <span class="proj-cursor" id="projCursor" aria-hidden="true"></span>
-            <button class="proj-item active" role="tab" aria-selected="true"
-              data-img="fotos/casatrigozero.png" data-badge="CLIENTE REAL" data-rank="RANK S"
-              data-desc="Landing page confortável e bonita pra quem visitar."
-              data-url="https://pixelbarz.github.io/casatrigozero/">
-              <span class="pi-name">Casa Trigo Zero</span>
-            </button>
-            <button class="proj-item" role="tab" aria-selected="false"
-              data-img="fotos/Pixelbarz.png" data-badge="AUTORAL" data-rank="RANK A"
-              data-desc="Site fluido e design moderno pros meus links."
-              data-url="https://pixelbarz.github.io/linksdobarz/">
-              <span class="pi-name">Minha Página de Links</span>
-            </button>
-            <button class="proj-item" role="tab" aria-selected="false"
-              data-img="fotos/bio.png" data-badge="AUTORAL" data-rank="RANK A"
-              data-desc="Análise da qualidade do bioetanol seguindo as normas da ANP e ABNT."
-              data-url="https://pixelbarz.github.io/biocalculadora/">
-              <span class="pi-name">Biocalculadora</span>
-            </button>
-            <button class="proj-item" role="tab" aria-selected="false"
-              data-img="fotos/studyos.png" data-badge="AUTORAL" data-rank="RANK A"
-              data-desc="Planner de estudos, direto e sem distração."
-              data-url="https://pixelbarz.github.io/studyos/">
-              <span class="pi-name">StudyOS</span>
-            </button>
-          </div>
-
-          <div class="proj-panel" id="projPanel">
-            <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
-            <img src="fotos/casatrigozero.png" alt="" id="projPanelImg" class="active" />
-            <div class="proj-panel-info">
-              <div class="proj-panel-top">
-                <span class="proj-badge" id="projBadge">CLIENTE REAL</span>
-                <span class="proj-rank" id="projRank">RANK S</span>
+            </article>
+            <article
+              class="project-panel"
+              id="project-links"
+              role="tabpanel"
+              aria-labelledby="tab-links"
+              hidden
+            >
+              <img
+                src="fotos/makoto2.jpg"
+                alt="Prévia da página de links PixelBarz"
+                loading="lazy"
+              />
+              <div class="project-information">
+                <p>autoral / página de links</p>
+                <h3>Minha Página de Links</h3>
+                <p>
+                  Um lugar fluido e moderno para reunir links (os meus links :D), com identidade
+                  própria e criatividade.
+                </p>
+                <div>HTML&nbsp;&nbsp; CSS&nbsp;&nbsp; JavaScript</div>
+                <a
+                  href="https://pixelbarz.github.io/linksdobarz/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >abrir projeto ↗</a
+                >
               </div>
-              <p class="proj-panel-desc" id="projDesc">Landing page confortável e bonita pra quem visitar.</p>
-              <a class="btn btn-primary proj-panel-link" id="projLink" href="https://pixelbarz.github.io/casatrigozero/" target="_blank" rel="noopener noreferrer">ABRIR PROJETO →</a>
-            </div>
+            </article>
+            <article
+              class="project-panel"
+              id="project-bio"
+              role="tabpanel"
+              aria-labelledby="tab-bio"
+              hidden
+            >
+              <img
+                src="fotos/bio.png"
+                alt="Prévia da Biocalculadora"
+                loading="lazy"
+              />
+              <div class="project-information">
+                <p>autoral / ferramenta</p>
+                <h3>Biocalculadora</h3>
+                <p>
+                  Ferramenta para análise da qualidade do bioetanol seguindo
+                  normas da ANP e ABNT.
+                </p>
+                <div>HTML&nbsp;&nbsp; CSS&nbsp;&nbsp; JavaScript</div>
+                <a
+                  href="https://pixelbarz.github.io/biocalculadora/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >abrir projeto ↗</a
+                >
+              </div>
+            </article>
+            <article
+              class="project-panel"
+              id="project-study"
+              role="tabpanel"
+              aria-labelledby="tab-study"
+              hidden
+            >
+              <img
+                src="fotos/studyos.jpg"
+                alt="Prévia do StudyOS"
+                loading="lazy"
+              />
+              <div class="project-information">
+                <p>autoral / produtividade</p>
+                <h3>StudyOS</h3>
+                <p>
+                  Planner de estudos direto e sem distração, feito para
+                  concentrar o que importa.
+                </p>
+                <div>HTML&nbsp;&nbsp; CSS&nbsp;&nbsp; Typescript</div>
+                <a
+                  href="https://pixelbarz.github.io/studyos/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >abrir projeto ↗</a
+                >
+              </div>
+            </article>
           </div>
-        </div>
-      </section>
-
-      <section id="contato" class="section container reveal">
-        <div class="section-head">
-          <div class="tag"><span class="tag-num">05</span><span class="tag-label">CONTATO</span></div>
-          <h2 class="section-title">Onde falar comigo</h2>
-        </div>
-        <p class="contact-desc">Se você quer um site mais bonito e leve, me chama em algum desses canais.</p>
-
-        <div class="contact-list">
-          <a class="contact-row" href="https://x.com/pixelbarz" target="_blank" rel="noopener noreferrer">
-            <span class="cr-name">Twitter / X</span><span class="cr-meta">posto algumas coisas lá</span><span class="cr-arrow">↗</span>
-          </a>
-          <a class="contact-row" href="https://github.com/pixelbarz" target="_blank" rel="noopener noreferrer">
-            <span class="cr-name">GitHub</span><span class="cr-meta">repositórios e código</span><span class="cr-arrow">↗</span>
-          </a>
-          <a class="contact-row" href="https://pixelbarz.github.io/linksdobarz/" target="_blank" rel="noopener noreferrer">
-            <span class="cr-name">Meus Links</span><span class="cr-meta">tudo num lugar</span><span class="cr-arrow">↗</span>
-          </a>
-        </div>
-      </section>
+        </section>
+        <section
+          class="scene contact-scene"
+          id="contato"
+          data-scene="contato"
+          aria-labelledby="contact-title"
+          hidden
+        >
+          <div class="contact-title">
+            <p class="scene-kicker">canal aberto</p>
+            <h2 id="contact-title">Tem uma ideia<br />pedindo forma?</h2>
+            <p>
+              Vamos construir algo que seja bom de ver e ainda melhor de usar.
+            </p>
+          </div>
+          <div class="contact-list">
+            <a
+              href="https://www.linkedin.com/in/jos%C3%A9-braz-9842023a8/"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><span>LinkedIn</span><small>trajetória e contato</small
+              ><b>↗</b></a
+            ><a
+              href="https://github.com/pixelbarz"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><span>GitHub</span><small>repositórios e código</small
+              ><b>↗</b></a
+            ><a
+              href="https://x.com/pixelbarz"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><span>Twitter / X</span><small>ideias e atualizações</small
+              ><b>↗</b></a
+            ><a
+              href="https://pixelbarz.github.io/linksdobarz/"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><span>Meus links</span><small>tudo em um lugar</small><b>↗</b></a
+            >
+          </div>
+          <p class="contact-signoff">PixelBarz</p>
+        </section>
+      </div>
+      <footer class="system-footer">
+        <span id="sceneStatus">01 / início</span><span>teclas: 1-4 / ← →</span
+        ><span>© <i id="year"></i> PixelBarz</span>
+      </footer>
     </main>
-
-    <footer class="footer">
-      <div class="container footer-inner">
-        <p class="footer-name">PIXELBARZ</p>
-        <div class="footer-right"><span class="footer-status"></span><span>BRASIL · 2026</span></div>
-      </div>
-    </footer>
-
-    <div class="vinyl-player" id="vinylPlayer" aria-label="Player de música">
-      <div class="card-corners"><i class="cc tl"></i><i class="cc tr"></i><i class="cc bl"></i><i class="cc br"></i></div>
-      <div class="vp-header">
-        <span class="vp-label">NOW PLAYING</span>
-        <button class="vp-toggle-btn" id="vpToggleBtn" aria-label="Minimizar player">−</button>
-      </div>
-      <div class="vp-body" id="vpBody">
-        <div class="vinyl-wrap" id="vinylWrap">
-          <div class="vinyl-disc" id="vinylDisc">
-            <div class="vinyl-center"><img src="fotos/fmfl.jpg" alt="Album art" class="vinyl-art" id="vinylArt" /></div>
-          </div>
-          <div class="vinyl-needle" id="vinylNeedle"></div>
-        </div>
-        <div class="vp-info"><p class="vp-track">Musica</p><p class="vp-artist">josebraz.cc</p></div>
-        <button class="vp-btn" id="vpPlayBtn" aria-label="Play/Pause"><span id="vpIcon">▶</span></button>
-      </div>
-      <audio id="bgAudio" src="persona.mp3" loop preload="auto"></audio>
-    </div>
-
     <script src="script.js"></script>
   </body>
 </html>
